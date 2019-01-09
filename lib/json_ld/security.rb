@@ -48,3 +48,4 @@ class JSON::LD::Context
     })
   end
 end
+
