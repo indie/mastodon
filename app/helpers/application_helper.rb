@@ -20,7 +20,23 @@ module ApplicationHelper
   end
 
   def open_registrations?
-    Setting.open_registrations
+    Setting.registrations_mode == 'open'
+  end
+
+  def approved_registrations?
+    Setting.registrations_mode == 'approved'
+  end
+
+  def closed_registrations?
+    Setting.registrations_mode == 'none'
+  end
+
+  def available_sign_up_path
+    if closed_registrations?
+      'https://joinmastodon.org/#getting-started'
+    else
+      new_user_registration_path
+    end
   end
 
   def open_deletion?
@@ -69,8 +85,12 @@ module ApplicationHelper
     tag(:meta, content: content, property: property)
   end
 
-  def react_component(name, props = {})
-    content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
+  def react_component(name, props = {}, &block)
+    if block.nil?
+      content_tag(:div, nil, data: { component: name.to_s.camelcase, props: Oj.dump(props) })
+    else
+      content_tag(:div, data: { component: name.to_s.camelcase, props: Oj.dump(props) }, &block)
+    end
   end
 
   def body_classes
@@ -96,5 +116,10 @@ module ApplicationHelper
 
   def storage_host?
     ENV['S3_ALIAS_HOST'].present? || ENV['S3_CLOUDFRONT_HOST'].present?
+  end
+
+  def quote_wrap(text, line_width: 80, break_sequence: "\n")
+    text = word_wrap(text, line_width: line_width - 2, break_sequence: break_sequence)
+    text.split("\n").map { |line| '> ' + line }.join("\n")
   end
 end

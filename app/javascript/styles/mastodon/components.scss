@@ -46,7 +46,8 @@
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &.disabled {
     background-color: $ui-primary-color;
     cursor: default;
   }
@@ -104,6 +105,10 @@
     &:hover {
       border-color: lighten($ui-primary-color, 4%);
       color: lighten($darker-text-color, 4%);
+    }
+
+    &:disabled {
+      opacity: 0.5;
     }
   }
 
@@ -353,6 +358,11 @@
     padding-bottom: 0;
     padding-right: 10px + 22px;
     resize: none;
+    scrollbar-color: initial;
+
+    &::-webkit-scrollbar {
+      all: unset;
+    }
 
     @media screen and (max-width: 600px) {
       height: 100px !important; // prevent auto-resize textarea
@@ -476,7 +486,7 @@
         opacity: 0;
         transition: opacity .1s ease;
 
-        input {
+        textarea {
           background: transparent;
           color: $secondary-text-color;
           border: 0;
@@ -638,7 +648,6 @@
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: pre-wrap;
   padding-top: 2px;
   color: $primary-text-color;
 
@@ -662,6 +671,7 @@
 
   p {
     margin-bottom: 20px;
+    white-space: pre-wrap;
 
     &:last-child {
       margin-bottom: 0;
@@ -876,7 +886,8 @@
   }
 }
 
-.status__relative-time {
+.status__relative-time,
+.notification__relative_time {
   color: $dark-text-color;
   float: right;
   font-size: 14px;
@@ -1176,57 +1187,6 @@ a .account__avatar {
   white-space: nowrap;
 }
 
-.account__header {
-  flex: 0 0 auto;
-  background: lighten($ui-base-color, 4%);
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-
-  &.inactive {
-    opacity: 0.5;
-
-    .account__header__avatar {
-      filter: grayscale(100%);
-    }
-
-    .account__header__username {
-      color: $secondary-text-color;
-    }
-  }
-
-  & > div {
-    background: rgba(lighten($ui-base-color, 4%), 0.9);
-    padding: 20px 10px;
-  }
-
-  .account__header__content {
-    color: $secondary-text-color;
-  }
-
-  .account__header__display-name {
-    color: $primary-text-color;
-    display: inline-block;
-    width: 100%;
-    font-size: 20px;
-    line-height: 27px;
-    font-weight: 500;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .account__header__username {
-    color: $highlight-text-color;
-    font-size: 14px;
-    font-weight: 400;
-    display: block;
-    margin-bottom: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}
-
 .account__disclaimer {
   padding: 10px;
   border-top: 1px solid lighten($ui-base-color, 8%);
@@ -1252,39 +1212,6 @@ a .account__avatar {
     &:active {
       text-decoration: none;
     }
-  }
-}
-
-.account__header__content {
-  color: $darker-text-color;
-  font-size: 14px;
-  font-weight: 400;
-  overflow: hidden;
-  word-break: normal;
-  word-wrap: break-word;
-
-  p {
-    margin-bottom: 20px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
-.account__header__display-name {
-  .emojione {
-    width: 25px;
-    height: 25px;
   }
 }
 
@@ -1357,15 +1284,6 @@ a .account__avatar {
       }
     }
   }
-}
-
-.account__header__avatar {
-  background-size: 90px 90px;
-  display: block;
-  height: 90px;
-  margin: 0 auto 10px;
-  overflow: hidden;
-  width: 90px;
 }
 
 .account-authorize {
@@ -1489,6 +1407,7 @@ a.account__display-name {
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
+  line-height: 22px;
   position: relative;
 
   .fa {
@@ -1496,7 +1415,7 @@ a.account__display-name {
   }
 
   > span {
-    display: block;
+    display: inline;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -1524,6 +1443,10 @@ a.account__display-name {
     color: $primary-text-color;
     text-decoration: underline;
   }
+}
+
+.notification__relative_time {
+  float: right;
 }
 
 .display-name {
@@ -2101,6 +2024,7 @@ a.account__display-name {
   &__append {
     flex: 1 1 auto;
     position: relative;
+    min-height: 120px;
   }
 }
 
@@ -2329,6 +2253,7 @@ a.account__display-name {
 
 .getting-started {
   color: $dark-text-color;
+  overflow: auto;
 
   &__footer {
     flex: 0 0 auto;
@@ -2580,6 +2505,15 @@ a.status-card {
   flex: 0 0 100px;
   background: lighten($ui-base-color, 8%);
   position: relative;
+
+  & > .fa {
+    font-size: 21px;
+    position: absolute;
+    transform-origin: 50% 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .status-card.horizontal {
@@ -2894,7 +2828,6 @@ a.status-card.compact:hover {
     transform: translateX(-50%);
     margin: 82px 0 0 50%;
     white-space: nowrap;
-    animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
   }
 }
 
@@ -2903,11 +2836,20 @@ a.status-card.compact:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
+  width: 42px;
+  height: 42px;
   box-sizing: border-box;
+  background-color: transparent;
   border: 0 solid lighten($ui-base-color, 26%);
+  border-width: 6px;
   border-radius: 50%;
+}
+
+.no-reduce-motion .loading-indicator span {
+  animation: loader-label 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+.no-reduce-motion .loading-indicator__figure {
   animation: loader-figure 1.15s infinite cubic-bezier(0.215, 0.610, 0.355, 1.000);
 }
 
@@ -3032,14 +2974,41 @@ a.status-card.compact:hover {
   display: block;
   font-weight: 500;
   margin-bottom: 10px;
+}
 
-  .column-settings__hashtag-select {
+.column-settings__hashtags {
+  .column-settings__row {
+    margin-bottom: 15px;
+  }
+
+  .column-select {
     &__control {
       @include search-input();
     }
 
+    &__placeholder {
+      color: $dark-text-color;
+      padding-left: 2px;
+      font-size: 12px;
+    }
+
+    &__value-container {
+      padding-left: 6px;
+    }
+
     &__multi-value {
       background: lighten($ui-base-color, 8%);
+
+      &__remove {
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: lighten($ui-base-color, 12%);
+          color: lighten($darker-text-color, 4%);
+        }
+      }
     }
 
     &__multi-value__label,
@@ -3047,9 +3016,42 @@ a.status-card.compact:hover {
       color: $darker-text-color;
     }
 
-    &__indicator-separator,
+    &__clear-indicator,
     &__dropdown-indicator {
-      display: none;
+      cursor: pointer;
+      transition: none;
+      color: $dark-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: lighten($dark-text-color, 4%);
+      }
+    }
+
+    &__indicator-separator {
+      background-color: lighten($ui-base-color, 8%);
+    }
+
+    &__menu {
+      @include search-popout();
+      padding: 0;
+      background: $ui-secondary-color;
+    }
+
+    &__menu-list {
+      padding: 6px;
+    }
+
+    &__option {
+      color: $inverted-text-color;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &--is-focused,
+      &--is-selected {
+        background: darken($ui-secondary-color, 10%);
+      }
     }
   }
 }
@@ -3060,42 +3062,22 @@ a.status-card.compact:hover {
   }
 }
 
-.account--follows-info {
+.relationship-tag {
   color: $primary-text-color;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  opacity: 0.7;
-  display: inline-block;
+  margin-bottom: 4px;
+  display: block;
   vertical-align: top;
-  background-color: rgba($base-overlay-background, 0.4);
+  background-color: $base-overlay-background;
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 500;
   padding: 4px;
   border-radius: 4px;
-}
-
-.account--muting-info {
-  color: $primary-text-color;
-  position: absolute;
-  top: 40px;
-  left: 10px;
   opacity: 0.7;
-  display: inline-block;
-  vertical-align: top;
-  background-color: rgba($base-overlay-background, 0.4);
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 4px;
-  border-radius: 4px;
-}
 
-.account--action-button {
-  position: absolute;
-  top: 10px;
-  right: 20px;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .setting-toggle {
@@ -3783,25 +3765,6 @@ a.status-card.compact:hover {
   flex-direction: column;
 }
 
-.onboarding-modal__pager {
-  height: 80vh;
-  width: 80vw;
-  max-width: 520px;
-  max-height: 470px;
-
-  .react-swipeable-view-container > div {
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    user-select: text;
-  }
-}
-
 .error-modal__body {
   height: 80vh;
   width: 80vw;
@@ -3833,22 +3796,6 @@ a.status-card.compact:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-@media screen and (max-width: 550px) {
-  .onboarding-modal {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-  }
-
-  .onboarding-modal__pager {
-    width: 100%;
-    height: auto;
-    max-width: none;
-    max-height: none;
-    flex: 1 1 auto;
-  }
 }
 
 .onboarding-modal__paginator,
@@ -3899,124 +3846,6 @@ a.status-card.compact:hover {
   justify-content: center;
 }
 
-.onboarding-modal__dots {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.onboarding-modal__dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 14px;
-  background: darken($ui-secondary-color, 16%);
-  margin: 0 3px;
-  cursor: pointer;
-
-  &:hover {
-    background: darken($ui-secondary-color, 18%);
-  }
-
-  &.active {
-    cursor: default;
-    background: darken($ui-secondary-color, 24%);
-  }
-}
-
-.onboarding-modal__page__wrapper {
-  pointer-events: none;
-  padding: 25px;
-  padding-bottom: 0;
-
-  &.onboarding-modal__page__wrapper--active {
-    pointer-events: auto;
-  }
-}
-
-.onboarding-modal__page {
-  cursor: default;
-  line-height: 21px;
-
-  h1 {
-    font-size: 18px;
-    font-weight: 500;
-    color: $inverted-text-color;
-    margin-bottom: 20px;
-  }
-
-  a {
-    color: $highlight-text-color;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: lighten($highlight-text-color, 4%);
-    }
-  }
-
-  .navigation-bar a {
-    color: inherit;
-  }
-
-  p {
-    font-size: 16px;
-    color: $lighter-text-color;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    strong {
-      font-weight: 500;
-      background: $ui-base-color;
-      color: $secondary-text-color;
-      border-radius: 4px;
-      font-size: 14px;
-      padding: 3px 6px;
-
-      @each $lang in $cjk-langs {
-        &:lang(#{$lang}) {
-          font-weight: 700;
-        }
-      }
-    }
-  }
-}
-
-.onboarding-modal__page__wrapper-0 {
-  background: url('../images/elephant_ui_greeting.svg') no-repeat left bottom / auto 250px;
-  height: 100%;
-  padding: 0;
-}
-
-.onboarding-modal__page-one {
-  &__lead {
-    padding: 65px;
-    padding-top: 45px;
-    padding-bottom: 0;
-    margin-bottom: 10px;
-
-    h1 {
-      font-size: 26px;
-      line-height: 36px;
-      margin-bottom: 8px;
-    }
-
-    p {
-      margin-bottom: 0;
-    }
-  }
-
-  &__extra {
-    padding-right: 65px;
-    padding-left: 185px;
-    text-align: center;
-  }
-}
-
 .display-case {
   text-align: center;
   font-size: 15px;
@@ -4036,92 +3865,6 @@ a.status-card.compact:hover {
     font-weight: 500;
     padding: 10px;
     border-radius: 4px;
-  }
-}
-
-.onboarding-modal__page-two,
-.onboarding-modal__page-three,
-.onboarding-modal__page-four,
-.onboarding-modal__page-five {
-  p {
-    text-align: left;
-  }
-
-  .figure {
-    background: darken($ui-base-color, 8%);
-    color: $secondary-text-color;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-    box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.3);
-
-    .onboarding-modal__image {
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    &.non-interactive {
-      pointer-events: none;
-      text-align: left;
-    }
-  }
-}
-
-.onboarding-modal__page-four__columns {
-  .row {
-    display: flex;
-    margin-bottom: 20px;
-
-    & > div {
-      flex: 1 1 0;
-      margin: 0 10px;
-
-      &:first-child {
-        margin-left: 0;
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      p {
-        text-align: center;
-      }
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .column-header {
-    color: $primary-text-color;
-  }
-}
-
-@media screen and (max-width: 320px) and (max-height: 600px) {
-  .onboarding-modal__page p {
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .onboarding-modal__page-two .figure,
-  .onboarding-modal__page-three .figure,
-  .onboarding-modal__page-four .figure,
-  .onboarding-modal__page-five .figure {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-
-  .onboarding-modal__page-four__columns .row {
-    margin-bottom: 10px;
-  }
-
-  .onboarding-modal__page-four__columns .column-header {
-    padding: 5px;
-    font-size: 12px;
   }
 }
 
@@ -4270,6 +4013,7 @@ a.status-card.compact:hover {
     color: $highlight-text-color;
   }
 
+  .status__content,
   .status__content p {
     color: $inverted-text-color;
   }
@@ -4389,6 +4133,7 @@ a.status-card.compact:hover {
 
 .confirmation-modal__action-bar,
 .mute-modal__action-bar {
+  .confirmation-modal__secondary-button,
   .confirmation-modal__cancel-button,
   .mute-modal__cancel-button {
     background-color: transparent;
@@ -5024,12 +4769,21 @@ a.status-card.compact:hover {
   }
 }
 
+.notification__filter-bar,
 .account__section-headline {
   background: darken($ui-base-color, 4%);
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: default;
   display: flex;
+  flex-shrink: 0;
 
+  button {
+    background: darken($ui-base-color, 4%);
+    border: 0;
+    margin: 0;
+  }
+
+  button,
   a {
     display: block;
     flex: 1 1 auto;
@@ -5072,34 +4826,7 @@ a.status-card.compact:hover {
 }
 
 .search-popout {
-  background: $simple-background-color;
-  border-radius: 4px;
-  padding: 10px 14px;
-  padding-bottom: 14px;
-  margin-top: 10px;
-  color: $light-text-color;
-  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-
-  h4 {
-    text-transform: uppercase;
-    color: $light-text-color;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-
-  li {
-    padding: 4px 0;
-  }
-
-  ul {
-    margin-bottom: 10px;
-  }
-
-  em {
-    font-weight: 500;
-    color: $inverted-text-color;
-  }
+  @include search-popout();
 }
 
 noscript {
@@ -5335,7 +5062,7 @@ noscript {
 
   .icon-button {
     flex: 0 0 auto;
-    margin-left: 5px;
+    margin: 0 5px;
   }
 }
 
@@ -5510,53 +5237,193 @@ noscript {
   }
 }
 
-.account__header .roles {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 0 15px;
+.account__header__content {
+  color: $darker-text-color;
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  word-break: normal;
+  word-wrap: break-word;
+
+  p {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
-.account__header .account__header__fields {
-  font-size: 14px;
-  line-height: 20px;
+.account__header {
   overflow: hidden;
-  margin: 20px -10px -20px;
-  border-bottom: 0;
-  border-top: 0;
 
-  dl {
-    border-top: 1px solid lighten($ui-base-color, 4%);
-    border-bottom: 0;
-    display: flex;
+  &.inactive {
+    opacity: 0.5;
+
+    .account__header__image,
+    .account__avatar {
+      filter: grayscale(100%);
+    }
   }
 
-  dt,
-  dd {
-    box-sizing: border-box;
-    padding: 14px 5px;
-    text-align: center;
-    max-height: 48px;
+  &__info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  &__image {
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  dt {
-    color: $darker-text-color;
+    height: 145px;
+    position: relative;
     background: darken($ui-base-color, 4%);
-    width: 120px;
-    flex: 0 0 auto;
-    font-weight: 500;
+
+    img {
+      object-fit: cover;
+      display: block;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
   }
 
-  dd {
-    flex: 1 1 auto;
-    color: $primary-text-color;
-    background: $ui-base-color;
+  &__bar {
+    position: relative;
+    background: lighten($ui-base-color, 4%);
+    padding: 5px;
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
 
-    &.verified {
-      border: 1px solid rgba($valid-value-color, 0.5);
-      background: rgba($valid-value-color, 0.25);
+    .avatar {
+      display: block;
+      flex: 0 0 auto;
+      width: 94px;
+      margin-left: -2px;
+
+      .account__avatar {
+        background: darken($ui-base-color, 8%);
+        border: 2px solid lighten($ui-base-color, 4%);
+      }
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: flex-start;
+    padding: 7px 5px;
+    margin-top: -55px;
+
+    &__buttons {
+      display: flex;
+      align-items: center;
+      padding-top: 55px;
+      overflow: hidden;
+
+      .icon-button {
+        border: 1px solid lighten($ui-base-color, 12%);
+        border-radius: 4px;
+        box-sizing: content-box;
+        padding: 2px;
+      }
+
+      .button {
+        margin: 0 8px;
+      }
+    }
+
+    &__name {
+      padding: 5px;
+
+      .account-role {
+        vertical-align: top;
+      }
+
+      .emojione {
+        width: 22px;
+        height: 22px;
+      }
+
+      h1 {
+        font-size: 16px;
+        line-height: 24px;
+        color: $primary-text-color;
+        font-weight: 500;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        small {
+          display: block;
+          font-size: 14px;
+          color: $darker-text-color;
+          font-weight: 400;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__bio {
+    overflow: hidden;
+    margin: 0 -5px;
+
+    .account__header__content {
+      padding: 20px 15px;
+      padding-bottom: 5px;
+      color: $primary-text-color;
+    }
+
+    .account__header__fields {
+      margin: 0;
+      border-top: 1px solid lighten($ui-base-color, 12%);
+
+      a {
+        color: lighten($ui-highlight-color, 8%);
+      }
+
+      dl:first-child .verified {
+        border-radius: 0 4px 0 0;
+      }
+
+      .verified a {
+        color: $valid-value-color;
+      }
+    }
+  }
+
+  &__extra {
+    margin-top: 4px;
+
+    &__links {
+      font-size: 14px;
+      color: $darker-text-color;
+
+      a {
+        display: inline-block;
+        color: $darker-text-color;
+        text-decoration: none;
+        padding: 10px;
+        padding-top: 20px;
+        font-weight: 500;
+
+        strong {
+          font-weight: 700;
+          color: $primary-text-color;
+        }
+      }
     }
   }
 }

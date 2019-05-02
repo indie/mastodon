@@ -21,7 +21,8 @@ class ReportService < BaseService
     @report = @source_account.reports.create!(
       target_account: @target_account,
       status_ids: @status_ids,
-      comment: @comment
+      comment: @comment,
+      uri: @options[:uri]
     )
   end
 
@@ -52,6 +53,6 @@ class ReportService < BaseService
   end
 
   def some_local_account
-    @some_local_account ||= Account.local.where(suspended: false).first
+    @some_local_account ||= Account.representative
   end
 end

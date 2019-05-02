@@ -6,13 +6,19 @@ class ActivityPub::CollectionsController < Api::BaseController
   before_action :set_account
   before_action :set_size
   before_action :set_statuses
+  before_action :set_cache_headers
 
   def show
-    render json: collection_presenter,
-           serializer: ActivityPub::CollectionSerializer,
-           adapter: ActivityPub::Adapter,
-           content_type: 'application/activity+json',
-           skip_activities: true
+    skip_session!
+
+    render_cached_json(['activitypub', 'collection', @account, params[:id]], content_type: 'application/activity+json') do
+      ActiveModelSerializers::SerializableResource.new(
+        collection_presenter,
+        serializer: ActivityPub::CollectionSerializer,
+        adapter: ActivityPub::Adapter,
+        skip_activities: true
+      )
+    end
   end
 
   private
@@ -31,7 +37,7 @@ class ActivityPub::CollectionsController < Api::BaseController
     when 'featured'
       @account.pinned_statuses.count
     else
-      raise ActiveRecord::NotFound
+      raise ActiveRecord::RecordNotFound
     end
   end
 
@@ -42,7 +48,7 @@ class ActivityPub::CollectionsController < Api::BaseController
         scope.merge!(@account.pinned_statuses)
       end
     else
-      raise ActiveRecord::NotFound
+      raise ActiveRecord::RecordNotFound
     end
   end
 

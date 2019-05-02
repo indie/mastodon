@@ -12,6 +12,7 @@ export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
+export const TIMELINE_CONNECT    = 'TIMELINE_CONNECT';
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
 
 export function updateTimeline(timeline, status, accept) {
@@ -74,12 +75,14 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
       params.since_id = timeline.getIn(['items', 0]);
     }
 
+    const isLoadingRecent = !!params.since_id;
+
     dispatch(expandTimelineRequest(timelineId, isLoadingMore));
 
     api(getState).get(path, { params }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
-      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206, isLoadingMore));
+      dispatch(expandTimelineSuccess(timelineId, response.data, next ? next.uri : null, response.code === 206, isLoadingRecent, isLoadingMore));
       done();
     }).catch(error => {
       dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
@@ -112,13 +115,14 @@ export function expandTimelineRequest(timeline, isLoadingMore) {
   };
 };
 
-export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadingMore) {
+export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadingRecent, isLoadingMore) {
   return {
     type: TIMELINE_EXPAND_SUCCESS,
     timeline,
     statuses,
     next,
     partial,
+    isLoadingRecent,
     skipLoading: !isLoadingMore,
   };
 };
@@ -137,6 +141,13 @@ export function scrollTopTimeline(timeline, top) {
     type: TIMELINE_SCROLL_TOP,
     timeline,
     top,
+  };
+};
+
+export function connectTimeline(timeline) {
+  return {
+    type: TIMELINE_CONNECT,
+    timeline,
   };
 };
 

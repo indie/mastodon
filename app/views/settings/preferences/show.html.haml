@@ -6,6 +6,7 @@
   %li= link_to t('preferences.publishing'), '#settings_publishing'
   %li= link_to t('preferences.other'), '#settings_other'
   %li= link_to t('preferences.web'), '#settings_web'
+  %li= link_to t('settings.notifications'), settings_notifications_path
 
 = simple_form_for current_user, url: settings_preferences_path, html: { method: :put } do |f|
   = render 'shared/error_messages', object: current_user
@@ -34,6 +35,9 @@
   .fields-group
     = f.input :setting_hide_network, as: :boolean, wrapper: :with_label
 
+  .fields-group
+    = f.input :setting_show_application, as: :boolean, wrapper: :with_label
+
   %hr#settings_web/
 
   .fields-row
@@ -46,6 +50,9 @@
     = f.input :setting_unfollow_modal, as: :boolean, wrapper: :with_label
     = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
     = f.input :setting_delete_modal, as: :boolean, wrapper: :with_label
+
+  .fields-group
+    = f.input :setting_aggregate_reblogs, as: :boolean, wrapper: :with_label
 
   .fields-group
     = f.input :setting_auto_play_gif, as: :boolean, wrapper: :with_label
