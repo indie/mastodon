@@ -3,7 +3,58 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [2.8.2] - 2019-05-05
+### Added
+
+- Add `SOURCE_TAG` environment variable ([ushitora-anqou](https://github.com/tootsuite/mastodon/pull/10698))
+
+### Fixed
+
+- Fix cropped hero image on frontpage ([BaptisteGelez](https://github.com/tootsuite/mastodon/pull/10702))
+- Fix blurhash gem not compiling on some operating systems ([Gargron](https://github.com/tootsuite/mastodon/pull/10700))
+- Fix unexpected CSS animations in some browsers ([ThibG](https://github.com/tootsuite/mastodon/pull/10699))
+- Fix closing video modal scrolling timelines to top ([ThibG](https://github.com/tootsuite/mastodon/pull/10695))
+
+## [2.8.1] - 2019-05-04
+### Added
+
+- Add link to existing domain block when trying to block an already-blocked domain ([ThibG](https://github.com/tootsuite/mastodon/pull/10663))
+- Add button to view context to media modal when opened from account gallery in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10676))
+- Add ability to create multiple-choice polls in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/10603))
+- Add `GITHUB_REPOSITORY` and `SOURCE_BASE_URL` environment variables ([rosylilly](https://github.com/tootsuite/mastodon/pull/10600))
+- Add `/interact/` paths to `robots.txt` ([ThibG](https://github.com/tootsuite/mastodon/pull/10666))
+- Add `blurhash` to the Attachment entity in the REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/10630))
+
+### Changed
+
+- Change hidden media to be shown as a blurhash-based colorful gradient instead of a black box in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10630))
+- Change rejected media to be shown as a blurhash-based gradient instead of a list of filenames in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10630))
+- Change e-mail whitelist/blacklist to not be checked when invited ([Gargron](https://github.com/tootsuite/mastodon/pull/10683))
+- Change cache header of REST API results to no-cache ([ThibG](https://github.com/tootsuite/mastodon/pull/10655))
+- Change the "mark media as sensitive" button to be more obvious in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/10673), [Gargron](https://github.com/tootsuite/mastodon/pull/10682))
+- Change account gallery in web UI to display 3 columns, open media modal ([Gargron](https://github.com/tootsuite/mastodon/pull/10667), [Gargron](https://github.com/tootsuite/mastodon/pull/10674))
+
+### Fixed
+
+- Fix LDAP/PAM/SAML/CAS users not being pre-approved ([Gargron](https://github.com/tootsuite/mastodon/pull/10621))
+- Fix accounts created through tootctl not being always pre-approved ([Gargron](https://github.com/tootsuite/mastodon/pull/10684))
+- Fix Sidekiq retrying ActivityPub processing jobs that fail validation ([ThibG](https://github.com/tootsuite/mastodon/pull/10614))
+- Fix toots not being scrolled into view sometimes through keyboard selection ([ThibG](https://github.com/tootsuite/mastodon/pull/10593))
+- Fix expired invite links being usable to bypass approval mode ([ThibG](https://github.com/tootsuite/mastodon/pull/10657))
+- Fix not being able to save e-mail preference for new pending accounts ([Gargron](https://github.com/tootsuite/mastodon/pull/10622))
+- Fix upload progressbar when image resizing is involved ([ThibG](https://github.com/tootsuite/mastodon/pull/10632))
+- Fix block action not automatically cancelling pending follow request ([ThibG](https://github.com/tootsuite/mastodon/pull/10633))
+- Fix stoplight logging to stderr separate from Rails logger ([Gargron](https://github.com/tootsuite/mastodon/pull/10624))
+- Fix sign up button not saying sign up when invite is used ([Gargron](https://github.com/tootsuite/mastodon/pull/10623))
+- Fix health checks in Docker Compose configuration ([fabianonline](https://github.com/tootsuite/mastodon/pull/10553))
+- Fix modal items not being scrollable on touch devices ([kedamaDQ](https://github.com/tootsuite/mastodon/pull/10605))
+- Fix Keybase configuration using wrong domain when a web domain is used ([BenLubar](https://github.com/tootsuite/mastodon/pull/10565))
+- Fix avatar GIFs not being animated on-hover on public profiles ([hyenagirl64](https://github.com/tootsuite/mastodon/pull/10549))
+- Fix OpenGraph parser not understanding some valid property meta tags ([da2x](https://github.com/tootsuite/mastodon/pull/10604))
+- Fix wrong fonts being displayed when Roboto is installed on user's machine ([ThibG](https://github.com/tootsuite/mastodon/pull/10594))
+- Fix confirmation modals being too narrow for a secondary action button ([ThibG](https://github.com/tootsuite/mastodon/pull/10586))
+
+## [2.8.0] - 2019-04-10
 ### Added
 
 - Add polls ([Gargron](https://github.com/tootsuite/mastodon/pull/10111), [ThibG](https://github.com/tootsuite/mastodon/pull/10155), [Gargron](https://github.com/tootsuite/mastodon/pull/10184), [ThibG](https://github.com/tootsuite/mastodon/pull/10196), [Gargron](https://github.com/tootsuite/mastodon/pull/10248), [ThibG](https://github.com/tootsuite/mastodon/pull/10255), [ThibG](https://github.com/tootsuite/mastodon/pull/10322), [Gargron](https://github.com/tootsuite/mastodon/pull/10138), [Gargron](https://github.com/tootsuite/mastodon/pull/10139), [Gargron](https://github.com/tootsuite/mastodon/pull/10144), [Gargron](https://github.com/tootsuite/mastodon/pull/10145),[Gargron](https://github.com/tootsuite/mastodon/pull/10146), [Gargron](https://github.com/tootsuite/mastodon/pull/10148), [Gargron](https://github.com/tootsuite/mastodon/pull/10151), [ThibG](https://github.com/tootsuite/mastodon/pull/10150), [Gargron](https://github.com/tootsuite/mastodon/pull/10168), [Gargron](https://github.com/tootsuite/mastodon/pull/10165), [Gargron](https://github.com/tootsuite/mastodon/pull/10172), [Gargron](https://github.com/tootsuite/mastodon/pull/10170), [Gargron](https://github.com/tootsuite/mastodon/pull/10171), [Gargron](https://github.com/tootsuite/mastodon/pull/10186), [Gargron](https://github.com/tootsuite/mastodon/pull/10189), [ThibG](https://github.com/tootsuite/mastodon/pull/10200), [rinsuki](https://github.com/tootsuite/mastodon/pull/10203), [Gargron](https://github.com/tootsuite/mastodon/pull/10213), [Gargron](https://github.com/tootsuite/mastodon/pull/10246), [Gargron](https://github.com/tootsuite/mastodon/pull/10265), [Gargron](https://github.com/tootsuite/mastodon/pull/10261), [ThibG](https://github.com/tootsuite/mastodon/pull/10333), [Gargron](https://github.com/tootsuite/mastodon/pull/10352), [ThibG](https://github.com/tootsuite/mastodon/pull/10140), [ThibG](https://github.com/tootsuite/mastodon/pull/10142), [ThibG](https://github.com/tootsuite/mastodon/pull/10141), [ThibG](https://github.com/tootsuite/mastodon/pull/10162), [ThibG](https://github.com/tootsuite/mastodon/pull/10161), [ThibG](https://github.com/tootsuite/mastodon/pull/10158), [ThibG](https://github.com/tootsuite/mastodon/pull/10156), [ThibG](https://github.com/tootsuite/mastodon/pull/10160), [Gargron](https://github.com/tootsuite/mastodon/pull/10185), [Gargron](https://github.com/tootsuite/mastodon/pull/10188), [ThibG](https://github.com/tootsuite/mastodon/pull/10195), [ThibG](https://github.com/tootsuite/mastodon/pull/10208), [Gargron](https://github.com/tootsuite/mastodon/pull/10187), [ThibG](https://github.com/tootsuite/mastodon/pull/10214), [ThibG](https://github.com/tootsuite/mastodon/pull/10209))
