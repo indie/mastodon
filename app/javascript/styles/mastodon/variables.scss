@@ -7,10 +7,10 @@ $warning-red: #ff5050 !default;      // Sunset Orange
 $gold-star: #ca8f04 !default;        // Dark Goldenrod
 
 // Values from the classic Mastodon UI
-$classic-base-color: #282c37;         // Midnight Express
-$classic-primary-color: #9baec8;      // Echo Blue
-$classic-secondary-color: #d9e1e8;    // Pattens Blue
-$classic-highlight-color: #2b90d9;    // Summer Sky
+$classic-base-color: #d0c9bd;         // Manila Folder
+$classic-primary-color: #9bae5a;      // Ecosteader Green
+$classic-secondary-color: #ae5e33;    // Brisk Embers
+$classic-highlight-color: #938f89;    // Storm Coming
 
 // Variables for defaults in UI
 $base-shadow-color: $black !default;
@@ -26,6 +26,15 @@ $ui-base-lighter-color: lighten($ui-base-color, 26%) !default; // Lighter darkes
 $ui-primary-color: $classic-primary-color !default;            // Lighter
 $ui-secondary-color: $classic-secondary-color !default;        // Lightest
 $ui-highlight-color: $classic-highlight-color !default;
+
+
+// Custom ecosteader theme colors
+$offwhite: #f3f3ee;          // Offwhite
+$graphite: #312f2cl;         // Graphite
+$darkgraphite: #0f0e0d;      // Dark Graphite 
+$ecosteader: #68792e;        // Greener Ecosteader for contrast
+$notwhite: #e4e2e6;          // Not white for softening
+
 
 // Variables for texts
 $primary-text-color: $white !default;
