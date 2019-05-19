@@ -1,6 +1,6 @@
 
 
-# Apache2 and the Return of the Mastodon
+# Apache2 and the Return of the ECOSTEADER Mastodon
 
 REQUIRED:  Apache2 
 
@@ -23,7 +23,8 @@ has been tested and works on Ubuntu 18.10, but your system may be different.
     git pull 
     git checkout branch your_branch_name 
 
-Configure your Ruby on Rails development environment to let rvm manage your ruby builds: 
+Configure your Ruby on Rails development environment to let rvm manage your ruby builds; upstream 
+mastodevs are pretty good about keeping master RUBIES secure.  
 
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     cd ~/.rbenv && src/configure && make -C src
@@ -49,7 +50,7 @@ The first dependencies we add are for SSL:
     sudo apt-get install -y libssl-dev libreadline-dev
 
 Now the 2.6.1 rubies should install without problem. Note that if you are not creating a development 
-environment, and instead are building directly on the prod server, you might instead want to add the 
+environment, and instead are building directly on the prod server, you might also want to add the 
 `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.6.1` as the jemalloc can help reduce memory 
 usage on production systems. 
     
@@ -185,12 +186,9 @@ Lastly,
 
     bundle install
     yarn install --pure-lockfile --ignore-optional
-    bundle exec rails db:migrate
-    rails s
+    RAILS_ENV=production bundle exec rails assets:precompile #Omit the RAILS_ENV if you are building locally
+    RAILS_ENV=production bundle exec rails db:migrate  #Omit the RAILS_ENV if you are building locally
+    rails s  #For local testing
 
 
-
-
-
- 
 
