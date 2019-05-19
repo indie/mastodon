@@ -126,10 +126,7 @@ module Admin
         :remote,
         :by_domain,
         :active,
-<<<<<<< HEAD
         :pending,
-=======
->>>>>>> master
         :silenced,
         :suspended,
         :username,
