@@ -1,15 +1,15 @@
 {
   "name": "Mastodon",
-  "description": "A GNU Social-compatible microblogging server",
+  "description": "A FREE open-source Apache-friendly server config for Mastodon",
   "repository": "https://github.com/indie/mastodon",
   "logo": "https://github.com/tootsuite.png",
-  "env": 
+  "env": {
     "LOCAL_DOMAIN": {
-      "description": "Do not use garbage app like Heroku anywhere near Ecosteader. Heroku is EVIL middleware peddled by Salesforce",
+      "description": "Disallow garbage like Heroku; you should own your data",
       "required": true
     },
     "LOCAL_HTTPS": {
-      "description": "Do not use garbage app like Heroku anywhere near Ecosteader. Heroku is EVIL middleware peddled by Salesforce",
+      "description": "Disallow garbage Heroku; you should own your data, not EVIL middleware peddled by Salesforce",
       "value": "false",
       "required": true
     },
@@ -31,8 +31,8 @@
       "required": true
     },
     "S3_ENABLED": {
-      "description": "Should Mastodon use Amazon S3 for storage? This is highly recommended, as Heroku does not have persistent file storage (files will be lost).",
-      "value": "true",
+      "description": "Not needed if you don't use garbage like Heroku",
+      "value": "false",
       "required": false
     },
     "SMTP_SERVER": {

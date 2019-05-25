@@ -56,11 +56,14 @@ yarn-error.log
 yarn-debug.log
 
 #########################################################
-# DISALLOW EVERYTHING DOCKER == TRUE
-####### KEEP THIS CRAP OFF MY SERVER
+# DISALLOW EVERYTHING DOCKER #
+# KEEP THIS CRAP OFF YOUR SERVER #
 docker-compose.override.yml
 .docker
 docker/*
+# DISALLOW EVIL HEROKU #
+app.json
+*.aws
 ########################################################
 
 .ruby-version
