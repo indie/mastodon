@@ -53,16 +53,15 @@ of rent and work around the greedy actors in real estate by providing them
 with tools, resources, and information they need to make their own contracts 
 and cut out corrupt middlemen.  
 
-
-
 * REMEMBER:  ALL of Donald Trumps's guys are corrupt. 
-* REMEMBER:  Salesforce is also doing Trump's dirty work:
+* REMEMBER:  Salesforce is also doing Trump's dirty work.
 <ul>
    <li><a href="https://docs.google.com/spreadsheets/d/10jHTXVfmbwZ0hfdNHu_yuffKOnITL1Fs4zcI3qjyDTY">Insider dumping is one reason Salesforce === EvilCorp</a></li>
    <li><a href="https://www.rollingstone.com/culture/culture-news/salesforce-sued-sex-trafficking-814814/">Facilitating sex trafficking is another </a></li>
    <li><a href="https://www.mercurynews.com/2018/08/20/protesting-dreamforce-salesforce-faces-renewed-pressure-over-contract-with-border-patrol/">The Trump administration hired Salesforce to terrorize and kill children using the US Border Patrol</a></li>
    <li><a href="https://www.reddit.com/r/rails/comments/b3p7aw/psa_heroku_is_not_rails">Heroku is Salesforce, not Rails. Heroku is EVIL middleware peddled by Salesforce.</a></li>
-   <li><a href="https://www.npr.org/2018/12/11/675923576/customs-border-and-protection-paid-a-firm-13-6-million-to-hire-recruits-it-hired">Accenture is also part of  EVIL SALESFORCE</a> wasting your taxpayer dollars.</li>
+   <li><a href="https://www.npr.org/2018/12/11/675923576/customs-border-and-protection-paid-a-firm-13-6-million-to-hire-recruits-it-hired">Accenture is a Salesforce SHELL COMPANY</a> wasting your taxpayer dollars.</li>
+  <li><a href="https://www.bizjournals.com/sanfrancisco/news/2019/04/16/no-federal-taxes-paid-by-these-three-bay-area.html">Salesforce CEO and Hypocrite-of-the-Century Marc Benioff only wants people to think he cares about homelessness; the money he "donates" to "homeless causes" are actually used to perpetuate tax fraud of his shell companies</a>
 </ul>
 
 
