@@ -23,8 +23,8 @@ has been tested and works on Ubuntu 18.10, but your system may be different.
     git pull 
     git checkout branch your_branch_name 
 
-Configure your Ruby on Rails development environment to let rvm manage your ruby builds; upstream 
-mastodevs are pretty good about keeping master RUBIES secure.  
+Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; upstream 
+are pretty good about keeping master RUBIES secure.  Note that nothing on Heroku endorses is ever secure. 
 
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     cd ~/.rbenv && src/configure && make -C src
@@ -189,6 +189,3 @@ Lastly,
     RAILS_ENV=production bundle exec rails assets:precompile #Omit the RAILS_ENV if you are building locally
     RAILS_ENV=production bundle exec rails db:migrate  #Omit the RAILS_ENV if you are building locally
     rails s  #For local testing
-
-
-
