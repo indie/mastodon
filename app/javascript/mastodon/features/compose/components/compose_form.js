@@ -60,7 +60,6 @@ class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
-    singleColumn: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -88,7 +87,7 @@ class ComposeForm extends ImmutablePureComponent {
     const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
     const fulltext = [this.props.spoilerText, countableText(this.props.text)].join('');
 
-    if (isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
+    if (isSubmitting || isUploading || isChangingUpload || length(fulltext) > 1733 || (fulltext.length !== 0 && fulltext.trim().length === 0 && !anyMedia)) {
       return;
     }
 
@@ -113,12 +112,6 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleChangeSpoilerText = (e) => {
     this.props.onChangeSpoilerText(e.target.value);
-  }
-
-  handleFocus = () => {
-    if (this.composeForm && !this.props.singleColumn) {
-      this.composeForm.scrollIntoView();
-    }
   }
 
   componentDidUpdate (prevProps) {
@@ -162,10 +155,6 @@ class ComposeForm extends ImmutablePureComponent {
     this.spoilerText = c;
   }
 
-  setRef = c => {
-    this.composeForm = c;
-  };
-
   handleEmojiPick = (data) => {
     const { text }     = this.props;
     const position     = this.autosuggestTextarea.textarea.selectionStart;
@@ -178,7 +167,7 @@ class ComposeForm extends ImmutablePureComponent {
     const { intl, onPaste, showSearch, anyMedia } = this.props;
     const disabled = this.props.isSubmitting;
     const text     = [this.props.spoilerText, countableText(this.props.text)].join('');
-    const disabledButton = disabled || this.props.isUploading || this.props.isChangingUpload || length(text) > 500 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
+    const disabledButton = disabled || this.props.isUploading || this.props.isChangingUpload || length(text) > 1733 || (text.length !== 0 && text.trim().length === 0 && !anyMedia);
     let publishText = '';
 
     if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
@@ -188,7 +177,7 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     return (
-      <div className='compose-form' ref={this.setRef}>
+      <div className='compose-form'>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
@@ -211,27 +200,29 @@ class ComposeForm extends ImmutablePureComponent {
           />
         </div>
 
-        <AutosuggestTextarea
-          ref={this.setAutosuggestTextarea}
-          placeholder={intl.formatMessage(messages.placeholder)}
-          disabled={disabled}
-          value={this.props.text}
-          onChange={this.handleChange}
-          suggestions={this.props.suggestions}
-          onFocus={this.handleFocus}
-          onKeyDown={this.handleKeyDown}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          onSuggestionSelected={this.onSuggestionSelected}
-          onPaste={onPaste}
-          autoFocus={!showSearch && !isMobile(window.innerWidth)}
-        >
+        <div className='compose-form__autosuggest-wrapper'>
+          <AutosuggestTextarea
+            ref={this.setAutosuggestTextarea}
+            placeholder={intl.formatMessage(messages.placeholder)}
+            disabled={disabled}
+            value={this.props.text}
+            onChange={this.handleChange}
+            suggestions={this.props.suggestions}
+            onKeyDown={this.handleKeyDown}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            onSuggestionSelected={this.onSuggestionSelected}
+            onPaste={onPaste}
+            autoFocus={!showSearch && !isMobile(window.innerWidth)}
+          />
+
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
-          <div className='compose-form__modifiers'>
-            <UploadFormContainer />
-            <PollFormContainer />
-          </div>
-        </AutosuggestTextarea>
+        </div>
+
+        <div className='compose-form__modifiers'>
+          <UploadFormContainer />
+          <PollFormContainer />
+        </div>
 
         <div className='compose-form__buttons-wrapper'>
           <div className='compose-form__buttons'>
@@ -240,7 +231,7 @@ class ComposeForm extends ImmutablePureComponent {
             <PrivacyDropdownContainer />
             <SpoilerButtonContainer />
           </div>
-          <div className='character-counter__wrapper'><CharacterCounter max={500} text={text} /></div>
+          <div className='character-counter__wrapper'><CharacterCounter max={1733} text={text} /></div>
         </div>
 
         <div className='compose-form__publish'>

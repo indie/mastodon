@@ -55,6 +55,15 @@ npm-debug.log
 yarn-error.log
 yarn-debug.log
 
-# Ignore Docker option files
+#########################################################
+# DISALLOW EVERYTHING DOCKER #
+# KEEP THIS CRAP OFF YOUR SERVER #
 docker-compose.override.yml
+.docker
+docker/*
+# DISALLOW EVIL HEROKU #
+app.json
+*.aws
+########################################################
 
+.ruby-version

@@ -571,6 +571,7 @@ and provided thanks to the work of the following contributors:
 * [mohemohe](mailto:mohemohe@users.noreply.github.com)
 * [mshrtkch](mailto:mshrtkch@users.noreply.github.com)
 * [muan](mailto:muan@github.com)
+* [indie](mailto:lsc@hackeress.com)
 * [namelessGonbai](mailto:43787036+namelessgonbai@users.noreply.github.com)
 * [neetshin](mailto:neetshin@neetsh.in)
 * [rch850](mailto:rich850@gmail.com)

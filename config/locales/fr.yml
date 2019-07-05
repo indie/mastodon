@@ -784,8 +784,13 @@ fr:
       too_many_options: ne peut contenir plus que %{max} propositions
   preferences:
     other: Autre
+<<<<<<< HEAD
     posting_defaults: Paramètres par défaut des pouets
     public_timelines: Fils publics
+=======
+    publishing: Publication
+    web: Web
+>>>>>>> ecosteader292
   relationships:
     activity: Activité du compte
     dormant: Dormant

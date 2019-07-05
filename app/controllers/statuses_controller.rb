@@ -27,7 +27,10 @@ class StatusesController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        expires_in 10.seconds, public: true if current_account.nil?
+        unless user_signed_in?
+          skip_session!
+          expires_in 10.seconds, public: true
+        end
 
         @body_classes = 'with-modals'
 

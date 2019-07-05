@@ -22,6 +22,8 @@ You can submit translations via [Crowdin](https://crowdin.com/project/mastodon).
 
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 
+You can submit translations via pull request.
+
 ## Pull requests
 
 Please use clean, concise titles for your pull requests. We use commit squashing, so the final commit in the master branch will carry the title of the pull request.

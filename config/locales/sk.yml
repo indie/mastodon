@@ -182,7 +182,10 @@ sk:
       statuses: Príspevky
       subscribe: Odoberaj
       suspended: Vylúčený/á
+<<<<<<< HEAD
       time_in_queue: Čakajúci %{time} v poradí
+=======
+>>>>>>> ecosteader292
       title: Účty
       unconfirmed_email: Nepotvrdený email
       undo_silenced: Zruš stíšenie
@@ -299,10 +302,16 @@ sk:
         suspend: vylúčené
       show:
         affected_accounts:
+<<<<<<< HEAD
           few: "%{count} účtov v databázi ovplyvnených"
           many: "%{count} účtov v databázi ovplyvnených"
           one: Jeden účet v databázi ovplyvnený
           other: "%{count} účty v databázi ovplyvnené"
+=======
+          few: Je ovplyvnených %{count} účtov v databázi
+          one: Jeden účet v databázi bol ovplyvnený
+          other: "%{count} účty v databáze boli ovplyvnené"
+>>>>>>> ecosteader292
         retroactive:
           silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
           suspend: Zruš suspendáciu všetkých momentálne ovplyvnených účtov z tejto domény
@@ -327,7 +336,10 @@ sk:
       delivery_available: Je v dosahu doručovania
       known_accounts:
         few: "%{count} známych účtov"
+<<<<<<< HEAD
         many: "%{count} známych účtov"
+=======
+>>>>>>> ecosteader292
         one: "%{count} známy účet"
         other: "%{count} známe účty"
       moderation:
