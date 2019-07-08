@@ -1,5 +1,8 @@
 # Ecosteader's instance of Mastodon
 
+:important: Please don't use master branch, it is a mess. We integrate each update
+independently. 
+
 Current version is 2.9.2:  
 
     git clone git@github.com:indie/mastodon.git
