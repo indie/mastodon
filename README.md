@@ -1,12 +1,18 @@
 # Ecosteader's instance of Mastodon
 
+Current version is 2.9.2:  
+
+    git clone git@github.com:indie/mastodon.git
+    git checkout ecosteader_v2.9.2
+
 This fork of the `tootsuite/mastodon/` repo to continue the work that was started 
 with the original `indie/spacemin` RoR site ... development on this fork will likely 
 follow the Apache-friendly ways. Please help share ECOLOGICAL DEMOCRACY that may 
 someday heal the planet. 
 
-Note:  Anyone working for EVIL SALESFORCE or Twitter or Heroku is NOT WELCOME HERE; 
-your code will be deleted and your IPs will be banned from the network.
+Note: Anybody affiliated with Donald Trump's EVIL SALESFORCE IS NOT WELCOME HERE; 
+all of your malicious Heroku code will be deleted and your IPs will be banned from 
+the network.
 
 ## About Ecosteader
 
