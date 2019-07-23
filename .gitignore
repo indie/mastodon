@@ -44,9 +44,10 @@ elasticsearch
 # Ignore Apple files
 .DS_Store
 
-# Ignore vim files
+# textedit files
 *~
 *.swp
+*.save
 
 # Ignore npm debug log
 npm-debug.log
@@ -61,7 +62,7 @@ yarn-debug.log
 docker-compose.override.yml
 .docker
 docker/*
-# DISALLOW EVIL HEROKU #
+# DISALLOW EVIL SALESFORCE TOOL HEROKU #
 app.json
 *.aws
 ########################################################
