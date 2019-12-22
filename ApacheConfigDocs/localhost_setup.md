@@ -135,8 +135,7 @@ your development machine.
 
 Backup your production (copy) scripts and code: 
 
-```pg_dump -Fc -U postgres mastodon_production > db_dec22_2019.dump
-```
+    pg_dump -Fc -U postgres mastodon_production > db_dec22_2019.dump
 
 
 ## Prepare environment for streaming
@@ -183,76 +182,83 @@ Lastly,
     
 -----------------    
     
- UPGRADING PostGRES:  
+ (Additional notes on UPGRADING PostGRES including some .jp-friendly help):  
  
-`dpkg -l | grep postgresql`
+    dpkg -l | grep postgresql
 
 #Mastodon を止める
 
-`systemctl stop mastodon-{web,sidekiq,streaming}.service`
+    systemctl stop mastodon-{web,sidekiq,streaming}.service
 
 #まず PostgreSQL のリポジトリを追加して、アップデートする
-```console
-sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main"
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt update
-```
+
+    sudo add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main"
+    wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    sudo apt update
 
 #今回は PostgreSQL 10 にするのでバージョンを指定してインストール
-`sudo apt install postgresql-10 postgresql-client-10 postgresql-contrib-10`
+
+    sudo apt install postgresql-10 postgresql-client-10 postgresql-contrib-10`
 
 
 #インストールされたか確認、下記をすると今インストールされているものが出る
-`dpkg -l | grep postgresql`
+
+    dpkg -l | grep postgresql`
 
 
 #下記のような表示で、両方入った状態が確認できるはず
-```console
-postgresql
-postgresql-9.5
-postgresql-10
-postgresql-client-9.5
-postgresql-client-10
-postgresql-client-common
-postgresql-common
-postgresql-contrib
-postgresql-contrib-9.5```
+
+    postgresql
+    postgresql-9.5
+    postgresql-10
+    postgresql-client-9.5
+    postgresql-client-10
+    postgresql-client-common
+    postgresql-common
+    postgresql-contrib
+    postgresql-contrib-9.5```
 
 #確認したら下記をしてクラスタを確認
 
-`pg_lsclusters`
+    pg_lsclusters`
 
 #下記のように 2 つの PostgreSQL が見えるはず
-```Ver Cluster Port Status Owner    Data directory               Log file
-9.5 main    5432 online postgres /var/lib/postgresql/9.5/main /var/log/postgresql/postgresql-9.5-main.log
-10  main    5433 online postgres /var/lib/postgresql/10/main /var/log/postgresql/postgresql-10-main.log```
+
+    Ver Cluster Port Status Owner    Data directory               Log file
+    9.5 main    5432 online postgres /var/lib/postgresql/9.5/main /var/log/postgresql/postgresql-9.5-main.log
+    10  main    5433 online postgres /var/lib/postgresql/10/main /var/log/postgresql/postgresql-10-main.log```
 
 #このときは 10 の接続先が 5433 になっていて、まだ 9.5 が通常ポートの 5432 につながった状態
 
 #次にインストール先の 10 を止めて、PostgreSQL もとめてアップグレード開始
-```sudo pg_dropcluster 10 main --stop
-sudo service postgresql stop
-sudo pg_upgradecluster 9.5 main
-```
+
+    sudo pg_dropcluster 10 main --stop
+    sudo service postgresql stop
+    sudo pg_upgradecluster 9.5 main
+
 
 #何もエラーが出なければ DB の移行がはじまる。まあまあ時間かかる。(うちではエラーでなかったのでどんなエラー出るかはわかりません)
 
-#終わったら再度確認
-`pg_lsclusters`
+#終わったら再度確認  `pg_lsclusters`
+
 #すると 10 のほうがポートが 5432 になっているはず
-```Ver Cluster Port Status  Owner    Data directory               Log file
-9.5 main    5433 offline postgres /var/lib/postgresql/9.5/main /var/log/postgresql/postgresql-9.5-main.log
-10  main    5432 offline postgres /var/lib/postgresql/10/main /var/log/postgresql/postgresql-10-main.log```
+    
+    Ver Cluster Port Status  Owner    Data directory               Log file
+    9.5 main    5433 offline postgres /var/lib/postgresql/9.5/main /var/log/postgresql/postgresql-9.5-main.log
+    10  main    5432 offline postgres /var/lib/postgresql/10/main /var/log/postgresql/postgresql-10-main.log```
 
 #PostgreSQL を再起動してバージョンが 10 になっているか確認
-```sudo service postgresql restart
-psql --version```
+
+    sudo service postgresql restart
+    psql --version
 
 #9.5 を削除
-`sudo pg_dropcluster 9.5 main`
+
+    sudo pg_dropcluster 9.5 main`
 
 #最後に Mastodon をリスタート
-`systemctl restart mastodon-{web,sidekiq,streaming}.service`
+
+    systemctl restart mastodon-{web,sidekiq,streaming}.service`
 
 
 [nginx is permanantly insecure]:https://www.zdnet.com/article/russian-police-raid-nginx-moscow-office/
