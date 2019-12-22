@@ -107,4 +107,11 @@ Rails.application.configure do
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
+
+ # Elastic search
+ # Optional ElasticSearch configuration
+  ES_ENABLED=true
+ #ES_HOST=bluepulsar
+  ES_PORT=9200
+
 end
