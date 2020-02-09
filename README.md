@@ -29,7 +29,7 @@ done with any amount of land or space -- in either urban and rural settings.
 Ecosteading is also about acknowledging that humans are but one user of shared 
 soil. This philosophy is sometimes called Community Ecology.
 
-[Get Started Ecosteading](https://github.com/indie/ecosteader/blob/master/START-Lot-Plan-Considerations-Ecosteader.pdf)
+[Get Started Decolonizing](https://github.com/indie/ecosteader/blob/master/START-Decolonize.pdf)
 
 Being an Ecosteader involves systems-level thinking. With the advent of AI and 
 technology, we know that smart systems require networking, and in order to best 
