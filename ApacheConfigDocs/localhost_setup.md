@@ -74,9 +74,9 @@ it can do the most good.
 Finally are we ready to run `bundle install`. Be sure you're at the root of the cloned `mastodon` directory, and on 
 your own branch. If you followed ths guide on a true Linux system, you should see SUCCESS: 
 
-     bundle install 
+     bundle update && bundle install 
 
-  Success!  
+Success!  
 
      Bundle complete! 117 Gemfile dependencies, 269 gems now installed.
      Use `bundle info [gemname]` to see where a bundled gem is installed.
