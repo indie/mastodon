@@ -63,3 +63,6 @@ ubuntu-xenial-16.04-cloudimg-console.log
 # Ignore Docker option files
 docker-compose.override.yml
 .docker
+
+
+*.lock
