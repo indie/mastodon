@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_025523) do
+ActiveRecord::Schema.define(version: 2019_10_31_163205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_aliases", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "acct", default: "", null: false
+    t.string "uri", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_aliases_on_account_id"
+  end
 
   create_table "account_conversations", force: :cascade do |t|
     t.bigint "account_id"
@@ -47,6 +56,17 @@ ActiveRecord::Schema.define(version: 2019_04_20_025523) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "provider", "provider_username"], name: "index_account_proofs_on_account_and_provider_and_username", unique: true
     t.index ["account_id"], name: "index_account_identity_proofs_on_account_id"
+  end
+
+  create_table "account_migrations", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "acct", default: "", null: false
+    t.bigint "followers_count", default: 0, null: false
+    t.bigint "target_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_migrations_on_account_id"
+    t.index ["target_account_id"], name: "index_account_migrations_on_target_account_id"
   end
 
   create_table "account_moderation_notes", force: :cascade do |t|
@@ -195,6 +215,16 @@ ActiveRecord::Schema.define(version: 2019_04_20_025523) do
     t.index ["target_account_id"], name: "index_blocks_on_target_account_id"
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
+    t.index ["account_id"], name: "index_bookmarks_on_account_id"
+    t.index ["status_id"], name: "index_bookmarks_on_status_id"
+  end
+
   create_table "conversation_mutes", force: :cascade do |t|
     t.bigint "conversation_id", null: false
     t.bigint "account_id", null: false
@@ -206,6 +236,13 @@ ActiveRecord::Schema.define(version: 2019_04_20_025523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uri"], name: "index_conversations_on_uri", unique: true
+  end
+
+  create_table "custom_emoji_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_custom_emoji_categories_on_name", unique: true
   end
 
   create_table "custom_emojis", force: :cascade do |t|
@@ -234,6 +271,13 @@ ActiveRecord::Schema.define(version: 2019_04_20_025523) do
     t.datetime "updated_at", null: false
     t.boolean "whole_word", default: true, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
+  end
+
+  create_table "domain_allows", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["domain"], name: "index_domain_allows_on_domain", unique: true
   end
 
   create_table "domain_blocks", force: :cascade do |t|
@@ -345,6 +389,17 @@ ActiveRecord::Schema.define(version: 2019_04_20_025523) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
+  end
+
+  create_table "markers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "timeline", default: "", null: false
+    t.bigint "last_read_id", default: 0, null: false
+    t.integer "lock_version", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "timeline"], name: "index_markers_on_user_id_and_timeline", unique: true
+    t.index ["user_id"], name: "index_markers_on_user_id"
   end
 
   create_table "media_attachments", force: :cascade do |t|
