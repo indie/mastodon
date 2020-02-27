@@ -789,3 +789,9 @@ DEPENDENCIES
   webmock (~> 3.8)
   webpacker (~> 4.2)
   webpush
+
+RUBY VERSION
+   ruby 2.6.5p114
+
+BUNDLED WITH
+   2.1.2
