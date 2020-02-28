@@ -1,3 +1,22 @@
+// Decolonize
+
+// ecosteader theme
+$eco1: #5a6a65;
+$eco2: #7f8a7e;
+$eco3: #191b22;
+$eco4: #2b2f2a; // kelp
+$eco5: #e6efe5;
+$kelp: #2b2f2a;
+$purple4: #c8c4d4;
+$purple5: #474059;
+$purpleicon: #ada6bf;
+$purpleborder: #5f5676;
+$kelpscrollbar: #7f8c7e;
+$mint: #c2ffdf;
+$pink: #736364; //more mauve than pink
+$lemon: #fff683;
+$coral: #ff857f;
+
 // Commonly used web colors
 $black: #000000;            // Black
 $white: #ffffff;            // White
@@ -5,19 +24,15 @@ $success-green: #79bd9a !default;    // Padua
 $error-red: #df405a !default;        // Cerise
 $warning-red: #ff5050 !default;      // Sunset Orange
 $gold-star: #ca8f04 !default;        // Dark Goldenrod
-$kelp: #303330;
-$tasty-seaweed: #c0ccbe;
-
-$red-bookmark: $warning-red;
 
 // Values from the classic Mastodon UI
-$classic-base-color: #282c37;         // Midnight Express
-$classic-primary-color: #9baec8;      // Echo Blue
+$classic-base-color: $eco1;           // ecosteader
+$classic-primary-color: $purple4;     // Echo Blue
 $classic-secondary-color: #d9e1e8;    // Pattens Blue
-$classic-highlight-color: #2b90d9;    // Summer Sky
+$classic-highlight-color: #ff857f;    // Summer Sky
 
 // Variables for defaults in UI
-$base-shadow-color: $black !default;
+$base-shadow-color: $kelp !default;
 $base-overlay-background: $black !default;
 $base-border-color: $white !default;
 $simple-background-color: $white !default;
@@ -34,10 +49,10 @@ $ui-highlight-color: $classic-highlight-color !default;
 // Variables for texts
 $primary-text-color: $white !default;
 $darker-text-color: $ui-primary-color !default;
-$dark-text-color: $ui-base-lighter-color !default;
+$dark-text-color: $purpleicon !default;
 $secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: $ui-highlight-color !default;
-$action-button-color: $ui-base-lighter-color !default;
+$action-button-color: $purpleicon !default;
 // For texts on inverted backgrounds
 $inverted-text-color: $ui-base-color !default;
 $lighter-text-color: $ui-base-lighter-color !default;
