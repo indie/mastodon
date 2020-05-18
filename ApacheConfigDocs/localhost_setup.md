@@ -86,12 +86,20 @@ Success!
      Use `bundle info [gemname]` to see where a bundled gem is installed.
      
 
-Install yarn
+Remove default system yarn, if any (it's probably old; you can check the date as follows) 
 
-     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+     ls -al /usr/bin/yarn 
+     -rwxr-xr-x 1 root root 20734 Feb 23  2018
+     rm -rf /usr/bin/yarn
+
+Install yarn via npm, and symbolically link to default 
+
+    npm install -g yarn
+    sudo ln -s /usr/local/bin/yarn /usr/bin/yarn
+
+Finally, confirm you have a recent version  
  
-To build a local development environment that actually runs Mastodon like it will be on a production server, a user named 
-`mastodon` needs to exist; let's set that up with your postgres:
+To build a local development environment that actually runs Mastodon like it will be on a production server, a user named `mastodon` needs to exist; let's set that up with your postgres:
 
      $ sudo -u postgres psql
      psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
@@ -184,7 +192,9 @@ OR To restore an old or "backup" database locally, first create a place for it t
 
 Then run `pg_restore` 
 
-    sudo -u postgres pg_restore -U postgres -d mastodon_development -v ~/backups/prod_0120_2019.dump
+    sudo -u postgres pg_restore -U postgres -d mastodon_development -v /backups/backup_18May2021.dump
+    bin/rails db:schema:load RAILS_ENV=development  #may be needed depending on your configs
+    bin/rails db:migrate RAILS_ENV=development
 
 Lastly, 
 
