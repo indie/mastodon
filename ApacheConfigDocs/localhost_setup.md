@@ -1,60 +1,58 @@
 
 
-# Apache2 and the Return of the ECOSTEADER Mastodon
+# Apache2 Configuration for Mastodon 
+## Return of the ECOSTEADER Mastodon
 
 REQUIRED:  Apache2 
 
-Set up your localhost environment to develop and backup your custom Mastodon instance. This 
-fork of Mastodon does NOT use third-party malware, like EVIL SALESFORCE's Heroku or Docker 
-(which writes endless logs and ups your server costs; most of Docker is PLAGIARIZED from 
-unpaid or underpaid technical writers by people who do not understand Linux 
-systems.) 
-
-Please don't do that here. 
+Set up your localhost environment to develop and backup your custom Mastodon instance. 
 
 ## Get started
 
 Configure your SSH on GitHub. This tutorial assumes you have already configured SSH keys with 
 your GitHub account. Then start your own branch so you can track your own changes. This guide 
-has been tested and works on Ubuntu 18.10, but your system may be different.
+has been tested and works on Ubuntu 18.10 and Linux Mint 19.2, but your system may be different.
 
     git clone git@github.com:indie/mastodon.git 
-    cd mastodon && git checkout ecosteaderfx_2.8_master 
+    cd mastodon && git checkout ecosteader_3.3 
     git pull 
     git checkout branch your_branch_name 
+
+Install prerequisites
+
+    sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+
 
 Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; upstream 
 are pretty good about keeping master RUBIES secure.  Note Heroku's use of [nginx is permanantly insecure].
 
-    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-    cd ~/.rbenv && src/configure && make -C src
-
-Tell your `.profile` directory to find the rbenv at `~/.rbenv`. There are at least a couple of ways
-to do this:
-
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 
-Or edit the `~/.bashrc` directly to append the $PATH with a colon and the location of the rbenv build, 
-and SOURCE the newly-updated file
+Configure for rbenv to load automatically, and check with `type rbenv`:
 
     echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-    SOURCE ~/.bashrc
+    source ~/.bashrc
+    type rbenv
 
 Now build the plugins directory
     
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+    rbenv install -l
+    rbenv install 2.6.5
+    rbenv global 2.6.5
+    cd mastodon
+    gem install bundler:2.1.2
+    bundle update --bundler
+    bundle install
 
-
-The first dependencies we add are for SSL: 
-
-    sudo apt-get install -y libssl-dev libreadline-dev
-
-Now the 2.6.1 rubies should install without problem. Note that if you are not creating a development 
-environment, and instead are building directly on the prod server, you might also want to add the 
-`RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.6.1` as the jemalloc can help reduce memory 
-usage on production systems. 
+Note that if you are not creating a development environment, and instead are building 
+directly on the prod server, you might also want to add the `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.6.5` 
+as the jemalloc can help reduce memory usage on production systems. 
     
-    rbenv install 2.6.1
+The next dependencies we add are for SSL: 
+
+    sudo apt install -y libssl-dev libyaml-dev libreadline6-dev
 
 Get your postgres going; here we also add a client lib. Then you can log-in and check that it 
 works; as per standard postgres, use `\q` to exit.
