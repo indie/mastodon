@@ -13,6 +13,12 @@ Configure your SSH on GitHub. This tutorial assumes you have already configured 
 your GitHub account. Then start your own branch so you can track your own changes. This guide 
 has been tested and works on Ubuntu 18.10 and Linux Mint 19.2, but your system may be different.
 
+:important: IMPORTANT
+
+    sudo apt remove nginx
+    sudo apt --purge remove nginx/
+    sudo apt --purge remove nginx
+
     git clone git@github.com:indie/mastodon.git 
     cd mastodon && git checkout ecosteader_3.3 
     git pull 
@@ -43,8 +49,6 @@ Now build the plugins directory
     rbenv global 2.6.5
     cd mastodon
     gem install bundler:2.1.2
-    bundle update --bundler
-    bundle install
 
 Note that if you are not creating a development environment, and instead are building 
 directly on the prod server, you might also want to add the `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.6.5` 
@@ -72,14 +76,19 @@ it can do the most good.
 Finally are we ready to run `bundle install`. Be sure you're at the root of the cloned `mastodon` directory, and on 
 your own branch. If you followed ths guide on a true Linux system, you should see SUCCESS: 
 
-     bundle update && bundle install 
+    bundle update --bundler
+    bundle install
 
 Success!  
 
      Bundle complete! 117 Gemfile dependencies, 269 gems now installed.
      Use `bundle info [gemname]` to see where a bundled gem is installed.
+     
 
+Install yarn
 
+     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+ 
 To build a local development environment that actually runs Mastodon like it will be on a production server, a user named 
 `mastodon` needs to exist; let's set that up with your postgres:
 
