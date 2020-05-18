@@ -163,12 +163,10 @@ Install Redis
 
     sudo apt install redis-server redis-tools
 
-Check your version of node and yarn ([node install directions] not included)
+Check your version of node ([node install directions] not included)
 
     node --version 
     v12.16.3
-    yarn --version
-    0.32
 
 Install the at least the minimum required [version of nodejs]
 
