@@ -180,11 +180,11 @@ To set-up a new database
 
 OR To restore an old or "backup" database locally, first create a place for it to be restored in postgres:
 
-   $ sudo -u postgres psql
+     sudo -u postgres psql
      psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
      Type "help" for help.
 
-     postgres=# create database mastodon_development with owner mastod;
+     postgres=# create database mastodon_development with owner mastodon;
      CREATE DATABASE
      postgres=# \q
 
@@ -194,7 +194,7 @@ Then run `pg_restore`
     bin/rails db:schema:load RAILS_ENV=development  #may be needed depending on your configs
     bin/rails db:migrate RAILS_ENV=development
 
-Lastly, 
+Optional alternative commands for production system replication:
 
     bundle install
     yarn install --pure-lockfile --ignore-optional
