@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.4.0', '< 3.0.0'
+ruby '>= 2.5.0', '< 3.0.0'
 
 gem 'pkg-config', '~> 1.4'
 
@@ -21,6 +21,7 @@ gem 'pghero', '~> 2.4'
 gem 'dotenv-rails', '~> 2.7'
 
 gem 'elasticsearch-transport', git: 'git://github.com/elasticsearch/elasticsearch-ruby.git'
+gem 'faraday'
 
 gem 'aws-sdk-s3', '~> 1.60', require: false
 gem 'fog-core', '<= 2.1.0'
@@ -50,8 +51,8 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
-gem 'discard', '~> 1.1'
-gem 'doorkeeper', '~> 5.2'
+gem 'discard', '~> 1.2'
+gem 'doorkeeper', '~> 5.4'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
@@ -59,7 +60,7 @@ gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.7'
 gem 'health_check', git: 'https://github.com/ianheggie/health_check', ref: '0b799ead604f900ed50685e9b2d469cd2befba5b'
 gem 'htmlentities', '~> 4.3'
-gem 'http', '~> 4.3'
+gem 'http', '~> 4.4'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
 gem 'httplog', '~> 1.4.2'
@@ -71,7 +72,7 @@ gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b
 gem 'nokogiri', '~> 1.10'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.10'
-gem 'ox', '~> 2.12'
+gem 'ox', '~> 2.13'
 gem 'parslet'
 gem 'parallel', '~> 1.19'
 gem 'posix-spawn', git: 'https://github.com/rtomayko/posix-spawn', ref: '58465d2e213991f8afb13b984854a49fcdcc980c'
@@ -103,7 +104,7 @@ gem 'webpacker', '~> 4.2'
 gem 'webpush'
 
 gem 'json-ld'
-gem 'json-ld-preloaded', '~> 3.0'
+gem 'json-ld-preloaded', '~> 3.1'
 gem 'rdf-normalize', '~> 0.4'
 
 group :development, :test do
