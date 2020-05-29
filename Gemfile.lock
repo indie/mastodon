@@ -1,4 +1,18 @@
 GIT
+  remote: git://github.com/elasticsearch/elasticsearch-ruby.git
+  revision: ec47d069b0d1f1e52269f7cb116a1f008e58bae0
+  specs:
+    elasticsearch (8.0.0.pre)
+      elasticsearch-api (= 8.0.0.pre)
+      elasticsearch-transport (= 8.0.0.pre)
+    elasticsearch-api (8.0.0.pre)
+      multi_json
+    elasticsearch-dsl (0.1.9)
+    elasticsearch-transport (8.0.0.pre)
+      faraday (~> 1)
+      multi_json
+
+GIT
   remote: https://github.com/ianheggie/health_check
   revision: 0b799ead604f900ed50685e9b2d469cd2befba5b
   ref: 0b799ead604f900ed50685e9b2d469cd2befba5b
@@ -201,15 +215,6 @@ GEM
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
     e2mmap (0.1.0)
-    elasticsearch (7.7.0)
-      elasticsearch-api (= 7.7.0)
-      elasticsearch-transport (= 7.7.0)
-    elasticsearch-api (7.7.0)
-      multi_json
-    elasticsearch-dsl (0.1.9)
-    elasticsearch-transport (7.7.0)
-      faraday (~> 1)
-      multi_json
     encryptor (3.0.0)
     equatable (0.6.1)
     erubi (1.9.0)
@@ -697,7 +702,7 @@ DEPENDENCIES
   doorkeeper (~> 5.2)
   dotenv-rails (~> 2.7)
   e2mmap (~> 0.1.0)
-  elasticsearch-transport
+  elasticsearch-transport!
   fabrication (~> 2.21)
   faker (~> 2.10)
   fast_blank (~> 1.0)
