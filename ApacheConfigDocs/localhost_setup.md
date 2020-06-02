@@ -21,7 +21,7 @@ has been tested and works on Ubuntu 18.10 and Linux Mint 19.2, but your system m
 
 
     git clone git@github.com:indie/mastodon.git 
-    cd mastodon && git checkout ecosteader_3.3 
+    cd mastodon && git checkout ecosteader_3.1.4 
     git pull 
     git checkout branch your_branch_name 
 
@@ -46,8 +46,9 @@ Now build the plugins directory
     
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     rbenv install -l
-    rbenv install 2.6.5
-    rbenv global 2.6.5
+    rbenv install 2.6.6
+    rbenv global 2.6.6
+    rbenv rehash
     cd mastodon
     gem install bundler:2.1.2
 
@@ -190,7 +191,7 @@ OR To restore an old or "backup" database locally, first create a place for it t
 
 Then run `pg_restore` 
 
-    sudo -u postgres pg_restore -U postgres -d mastodon_development -v /backups/backup_18May2021.dump
+    sudo -u postgres pg_restore -U postgres -d mastodon_development -v /backups/backup_28May2021.dump
     bin/rails db:schema:load RAILS_ENV=development  #may be needed depending on your configs
     bin/rails db:migrate RAILS_ENV=development
 
@@ -200,7 +201,9 @@ Optional alternative commands for production system replication:
     yarn install --pure-lockfile --ignore-optional
     RAILS_ENV=production bundle exec rails assets:precompile #Omit the RAILS_ENV if you are building locally
     RAILS_ENV=production bundle exec rails db:migrate  #Omit the RAILS_ENV if you are building locally
-    rails s  #For local testing
+    rails s  #For local testing, or can use
+    gem install foreman --no-document-
+
     
     
 -----------------    
