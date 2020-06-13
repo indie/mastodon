@@ -1,28 +1,21 @@
 # frozen_string_literal: true
 
-class ActivityPub::OutboxesController < Api::BaseController
+class ActivityPub::OutboxesController < ActivityPub::BaseController
   LIMIT = 20
 
   include SignatureVerification
+  include AccountOwnedConcern
 
-  before_action :set_account
+  before_action :require_signature!, if: :authorized_fetch_mode?
   before_action :set_statuses
   before_action :set_cache_headers
 
   def show
-    unless page_requested?
-      skip_session!
-      expires_in 1.minute, public: true
-    end
-
+    expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode? && !(signed_request_account.present? && page_requested?))
     render json: outbox_presenter, serializer: ActivityPub::OutboxSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
   private
-
-  def set_account
-    @account = Account.find_local!(params[:account_username])
-  end
 
   def outbox_presenter
     if page_requested?
@@ -57,12 +50,12 @@ class ActivityPub::OutboxesController < Api::BaseController
     return unless page_requested?
 
     @statuses = @account.statuses.permitted_for(@account, signed_request_account)
-    @statuses = params[:min_id].present? ? @statuses.paginate_by_min_id(LIMIT, params[:min_id]).reverse : @statuses.paginate_by_max_id(LIMIT, params[:max_id])
+    @statuses = @statuses.paginate_by_id(LIMIT, params_slice(:max_id, :min_id, :since_id))
     @statuses = cache_collection(@statuses, Status)
   end
 
   def page_requested?
-    params[:page] == 'true'
+    truthy_param?(:page)
   end
 
   def page_params

@@ -79,6 +79,12 @@ code {
           text-decoration: none;
         }
       }
+
+      .recommended {
+        position: absolute;
+        margin: 0 4px;
+        margin-top: -2px;
+      }
     }
   }
 
@@ -106,6 +112,15 @@ code {
       padding: 0.2em 0.4em;
       background: darken($ui-base-color, 12%);
     }
+
+    li {
+      list-style: disc;
+      margin-left: 18px;
+    }
+  }
+
+  ul.hint {
+    margin-bottom: 15px;
   }
 
   span.hint {
@@ -125,6 +140,10 @@ code {
       margin-top: 15px;
       margin-bottom: 0;
     }
+  }
+
+  .otp-hint {
+    margin-bottom: 25px;
   }
 
   .card {
@@ -207,6 +226,12 @@ code {
     }
   }
 
+  .input.datetime .label_input select {
+    display: inline-block;
+    width: auto;
+    flex: 0;
+  }
+
   .required abbr {
     text-decoration: none;
     color: lighten($error-value-color, 12%);
@@ -239,6 +264,10 @@ code {
       &-6 {
         max-width: 50%;
       }
+
+      .actions {
+        margin-top: 27px;
+      }
     }
 
     .fields-group:last-child,
@@ -258,6 +287,14 @@ code {
       .fields-row__column.fields-group,
       .fields-row__column {
         margin-bottom: 25px;
+      }
+    }
+
+    .fields-group.invited-by {
+      margin-bottom: 30px;
+
+      .hint {
+        text-align: center;
       }
     }
   }
@@ -294,6 +331,13 @@ code {
     }
   }
 
+  .input.static .label_input__wrapper {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid $dark-text-color;
+    border-radius: 4px;
+  }
+
   input[type=text],
   input[type=number],
   input[type=email],
@@ -311,6 +355,10 @@ code {
     border: 1px solid darken($ui-base-color, 14%);
     border-radius: 4px;
     padding: 10px;
+
+    &::placeholder {
+      color: lighten($darker-text-color, 4%);
+    }
 
     &:invalid {
       box-shadow: none;
@@ -443,6 +491,10 @@ code {
     height: 41px;
   }
 
+  h4 {
+    margin-bottom: 15px !important;
+  }
+
   .label_input {
     &__wrapper {
       position: relative;
@@ -479,6 +531,10 @@ code {
   &__overlay-area {
     position: relative;
 
+    &__blurred form {
+      filter: blur(2px);
+    }
+
     &__overlay {
       position: absolute;
       top: 0;
@@ -489,8 +545,10 @@ code {
       justify-content: center;
       align-items: center;
       background: rgba($ui-base-color, 0.65);
-      backdrop-filter: blur(2px);
       border-radius: 4px;
+      margin-left: -4px;
+      margin-top: -4px;
+      padding: 4px;
 
       &__content {
         text-align: center;
@@ -529,7 +587,7 @@ code {
 
   &.alert {
     border: 1px solid rgba($error-value-color, 0.5);
-    background: rgba($error-value-color, 0.25);
+    background: rgba($error-value-color, 0.1);
     color: $error-value-color;
   }
 
@@ -553,7 +611,7 @@ code {
     box-sizing: border-box;
     display: block;
     width: 100%;
-    border: none;
+    border: 0;
     padding: 10px;
     font-family: $font-monospace, monospace;
     background: $ui-base-color;
@@ -588,6 +646,15 @@ code {
 
   @media screen and (max-width: 740px) and (min-width: 441px) {
     margin-top: 40px;
+  }
+
+  &.translation-prompt {
+    text-align: unset;
+    color: unset;
+
+    a {
+      text-decoration: underline;
+    }
   }
 }
 

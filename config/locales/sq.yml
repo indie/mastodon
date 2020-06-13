@@ -4,29 +4,37 @@ sq:
     about_hashtag_html: Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fediverse.
     about_mastodon_html: Mastodon-i është një rrjet shoqëror i bazuar në protokolle web të hapur dhe në software të lirë, me burim të hapur. Është i decentralizuar, si email-ii.
     about_this: Mbi
+    active_count_after: aktive
+    active_footnote: Përdorues Aktivë Mujor (PAM)
     administered_by: 'Administruar nga:'
     api: API
     apps: Aplikacione për celular
     contact: Kontakt
     contact_missing: I parregulluar
     contact_unavailable: N/A
+    discover_users: Zbulo përdoruesit
     documentation: Dokumentim
-    extended_description_html: |
-      <h3>Një vend i mirë për rregulla</h3>
-      <p>Përshkrimi i zgjeruar s’është sajuar ende.</p>
-    generic_description: "%{domain} është një shërbyes te rrjeti"
+    get_apps: Provo app mobil
     hosted_on: Mastodon i strehuar në %{domain}
     learn_more: Mësoni më tepër
     privacy_policy: Rregulla privatësie
+    see_whats_happening: Shih se ç'po ndodhë
+    server_stats: 'Statistika serveri:'
     source_code: Kod burim
     status_count_after:
       one: gjendje
       other: gjendje
     status_count_before: Cili krijoi
+    tagline: Ndjek shokët/shoqet dhe gjej të ri
     terms: Kushte shërbimi
+    unavailable_content: Përmbajtje e pa arritshme
+    unavailable_content_description:
+      domain: Server
+      reason: Arsye
     user_count_after:
       one: përdorues
       other: përdorues
+    user_count_before: Shtëpi për
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
     choices_html: 'Zgjedhje të %{name}:'
@@ -41,6 +49,7 @@ sq:
     media: Media
     moved_html: "%{name} ka kaluar te %{new_profile_link}:"
     network_hidden: Këto të dhëna nuk mund të kihen
+    never_active: Asnjëherë
     nothing_here: S’ka gjë këtu!
     people_followed_by: Persona të ndjekur nga %{name}
     people_who_follow: Persona që ndjekin %{name}
@@ -55,7 +64,8 @@ sq:
     roles:
       admin: Përgjegjës
       bot: Bot
-      moderator: Mod
+      group: Grup
+    unavailable: Profil i pa arritshëm
     unfollow: Resht së ndjekuri
   admin:
     account_actions:
@@ -67,8 +77,11 @@ sq:
       delete: Fshije
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
+      add_email_domain_block: Shto e-mail domain në listën e zezë
+      approve: Prano
+      approve_all: Prano të gjithë
       are_you_sure: A jeni i sigurt?
-      avatar: Avatar
+      avatar: Foto profili
       by_domain: Përkatësi
       change_email:
         changed_msg: Email-i i llogarisë u ndryshua me sukses!
@@ -92,9 +105,7 @@ sq:
       email_status: Gjendje email-i
       enable: Aktivizoje
       enabled: E aktivizuar
-      feed_url: URL prurjeje
       followers: Ndjekës
-      followers_url: URL Ndjekësish
       follows: Ndjekje
       header: Krye
       inbox_url: URL Mesazhesh të Marrë
@@ -112,22 +123,25 @@ sq:
       moderation:
         active: Aktiv
         all: Krejt
+        pending: Në pritje
         silenced: U heshtua
         suspended: Të pezulluara
         title: Moderim
       moderation_notes: Shënime moderimesh
       most_recent_activity: Veprimtaria më e freskët
       most_recent_ip: IP-ja më e freskët
+      no_account_selected: Asnjë llogari nuk është ndryshuar pasiqë asnjë llogari nuk është zgjedhur
       no_limits_imposed: Pa imponim kufijsh
-      not_subscribed: Jo i  pajtuar
-      outbox_url: URL Mesazhesh të Dërguar
+      not_subscribed: Jo i pajtuar
+      pending: Në pritje për rishikim
       perform_full_suspension: Pezulloje
-      profile_url: URL profili
       promote: Promovojeni
       protocol: Protokoll
       public: Publike
       push_subscription_expires: Pajtimi PuSH skadon më
       redownload: Rifresko profilin
+      reject: Refuzo
+      reject_all: Refuzo të gjitha
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
       resend_confirmation:
@@ -140,10 +154,12 @@ sq:
       role: Leje
       roles:
         admin: Përgjegjës
-        moderator: Moderator
+        moderator: Moderues
         staff: Staf
         user: Përdorues
       search: Kërkoni
+      search_same_email_domain: Përdorues tjerë me e-mail domain të ngjajshëm
+      search_same_ip: Përdorues tjerë me IP të ngjajshme
       shared_inbox_url: URL kutie të përbashkët mesazesh
       show:
         created_reports: Ka bërë raportime
@@ -153,6 +169,7 @@ sq:
       statuses: Gjendje
       subscribe: Pajtomë
       suspended: Të pezulluara
+      time_in_queue: Në pritje në radhë %{time}
       title: Llogari
       unconfirmed_email: Email i paripohuar
       undo_silenced: Zhbëje heshtjen
@@ -160,8 +177,28 @@ sq:
       unsubscribe: Shpajtohuni
       username: Emër përdoruesi
       warn: Sinjalizoje
-      web: Web
+      web: Ueb
+      whitelisted: Lista e bardhë
     action_logs:
+      action_types:
+        assigned_to_self_report: Përcakto Raportin
+        change_email_user: Ndrysho E-mail për përdoruesin
+        confirm_user: Konfirmo përdoruesin
+        create_account_warning: Krijo vërrejtje
+        create_announcement: Krijo lajmërim
+        create_custom_emoji: Krijo Emoji të veçantë
+        create_domain_allow: Lejo krijimin e domain
+        create_domain_block: Krijo bllokimin e domain
+        create_email_domain_block: Krijo bllokadë për E-mailët me domain
+        destroy_status: Fshij gjendjen
+        disable_2fa_user: Ç'aktivizo 2FA
+        disable_custom_emoji: Ç'aktivizo Emoji të veçantë
+        disable_user: Ç'aktivizo përdorues
+        enable_user: Aktivizo përdorues
+        promote_user: Promovo përdoruesin
+        remove_avatar_user: Largo foton e profilit
+        reopen_report: Rihap rapotin
+        update_status: Përditëso gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user: "%{name} ndryshoi adresën email të përdoruesit %{target}"
@@ -194,21 +231,40 @@ sq:
         update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
         update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
+      empty: Nuk u gjendën regjistrat.
+      filter_by_action: Filtro sipas veprimit
+      filter_by_user: Filtro sipas përdoruesit
       title: Auditim regjistri
+    announcements:
+      destroyed_msg: Lajmërimi është fshirë me sukses!
+      edit:
+        title: Modifiko lajmërimin
+      empty: Nuk u gjendën lajmërimet.
+      live: Drejtpërdrejtë
+      new:
+        create: Krijo lajmërim
+        title: Lajmërimi i ri
+      published_msg: Lajmërimi u publikua me sukses!
+      title: Lajmërimet
     custom_emojis:
+      assign_category: Përcakto kategori
       by_domain: Përkatësi
       copied_msg: Kopja vendore e emotikonëve u krijua me sukses
       copy: Kopjoje
       copy_failed_msg: S’u bë dot një kopje vendore e emotikoneve
+      create_new_category: Krijo kategori të re
       created_msg: Emotikoni u krijua me sukses!
       delete: Fshije
       destroyed_msg: Emotikoni u asgjësua me sukses!
       disable: Çaktivizoje
+      disabled: Pamundësuar
       disabled_msg: Ai emotikon u çaktivizua me sukses
       emoji: Emotikon
       enable: Aktivizoje
+      enabled: Mundësuar
       enabled_msg: Ai emotikon u aktivizua me sukses
       image_hint: PNG deri 50KB
+      list: Listë
       listed: Në listë
       new:
         title: Shtoni emotikon të ri vetjak
@@ -216,11 +272,14 @@ sq:
       shortcode: Kod i shkurtër
       shortcode_hint: Të paktën 2 shenja, vetëm shenja alfanumerike dhe nënvija
       title: Emotikone vetjake
+      uncategorized: E pakategorizuar
+      unlist: Ç'listo
       unlisted: Hequr prej liste
       update_failed_msg: S’u përditësua dot ai emotikon
       updated_msg: Emotikoni u përditësua me sukses!
       upload: Ngarkoje
     dashboard:
+      authorized_fetch_mode: Gjendja e sigurtë
       backlog: punë të prapambetura
       config: Formësim
       feature_deletions: Fshirje llogarish
@@ -228,13 +287,17 @@ sq:
       feature_profile_directory: Drejtori profilesh
       feature_registrations: Regjistrime
       feature_relay: Rele federimi
+      feature_spam_check: Kundër spam
+      feature_timeline_preview: Parashikimi kohështrirjes
       features: Veçori
       hidden_service: Federim me shërbime të fshehura
       open_reports: raportime të hapur
+      pending_tags: hashtag në pritje për rishikim
+      pending_users: përdorues në pritje për rishikim
       recent_users: Përdorues së fundi
       search: Kërko tekstin e plotë
       single_user_mode: Mënyrë me përdorues të vetëm
-      software: Software
+      software: Softuerë
       space: Përdorim hapësire
       title: Pult
       total_users: përdorues gjithsej
@@ -242,6 +305,8 @@ sq:
       week_interactions: ndërveprime këtë javë
       week_users_active: aktivë këtë javë
       week_users_new: përdorues këtë javë
+    domain_allows:
+      undo: Largo nga lista e bardhë
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
       created_msg: Bllokimi i përkatësisë tani po përpunohet
@@ -256,6 +321,8 @@ sq:
           silence: Heshtoji
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      private_comment: Koment privat
+      public_comment: Koment publik
       reject_media: Mos prano kartela media
       reject_media_hint: Heq kartela media të depozituara lokalisht dhe nuk pranon të shkarkohen të tilla në të ardhmen. Pa peshë për pezullimet
       reject_reports: Hidh tej raportimet
@@ -281,14 +348,13 @@ sq:
       delete: Fshije
       destroyed_msg: Përkatësia email u fshi me sukses nga lista e bllokimeve
       domain: Përkatësi
+      from_html: nga %{domain}
       new:
         create: Shtoni përkatësi
         title: Zë i ri email në listë bllokimesh
       title: Listë bllokimesh email-esh
-    followers:
-      back_to_account: Mbrapsht Te Llogaria
-      title: Ndjekës të %{acct}
     instances:
+      by_domain: Domain
       delivery_available: Ka shpërndarje të mundshme
       known_accounts:
         one: "%{count} llogari e njohur"
@@ -297,6 +363,8 @@ sq:
         all: Krejt
         limited: E kufizuar
         title: Moderim
+      private_comment: Koment privat
+      public_comment: Koment publik
       title: Federim
       total_blocked_by_us: Bllokuar nga ne
       total_followed_by_them: Ndjekur prej tyre
@@ -330,9 +398,6 @@ sq:
       created_msg: Shënimi i raportimit u krijua me sukses!
       destroyed_msg: Shënimi i raportimit u fshi me sukses!
     reports:
-      account:
-        note: shënim
-        report: raportojeni
       action_taken_by: Veprimi i ndërmarrë nga
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
@@ -372,6 +437,9 @@ sq:
       custom_css:
         desc_html: Modifikojeni pamjen me CSS të nagrkuar në çdo faqe
         title: CSS Vetjake
+      domain_blocks:
+        all: Për të gjithë
+        disabled: Për askend
       hero:
         desc_html: E shfaqur në faqen ballore. Këshillohet të paktën 600x100px. Kur nuk caktohet gjë, përdoret miniaturë e shërbyesit
         title: Figurë heroi
@@ -429,6 +497,7 @@ sq:
         delete: Fshije
         nsfw_off: Vëri shenjë si jo rezervat
         nsfw_on: Vëri shenjë si rezervat
+      deleted: Fshirë
       failed_to_execute: S’u arrit të përmbushej
       media:
         title: Media
@@ -436,26 +505,22 @@ sq:
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
       with_media: Me media
-    subscriptions:
-      callback_url: URL Callback-u
-      confirmed: U ripohua
-      expires_in: Skadon më
-      last_delivery: Dorëzimi e fundit
-      title: WebSub
-      topic: Temë
     tags:
-      accounts: Llogari
-      hidden: Fshehur
-      hide: Fshihe prej drejtorie
+      context: Kontekst
+      directory: Në direktorium
+      last_active: Aktive së fundi
+      most_popular: Më e famshmja
+      most_recent: Të fundit
       name: Hashtag
+      review: Gjendja e rishikimit
+      reviewed: Rishikuar
       title: Hashtage
-      unhide: Shfaqe në drejtori
-      visible: E dukshme
+      trending_right_now: Në trend tani
+      unreviewed: E parishikuar
     title: Administrim
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
-      edit: Përpunoni
       edit_preset: Përpunoni sinjalizim të paracaktuar
       title: Administroni sinjalizime të paracaktuara
   admin_mailer:
@@ -463,6 +528,14 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: Raport i ri për %{instance} (#%{id})
+  aliases:
+    add_new: Krijo shkurtesë
+    remove: Fshijë shkurtesën
+  appearance:
+    localization:
+      guide_link_text: Çdokush mund të kontribuojë.
+    sensitive_content: Përmbajtje sensitive
+    toot_layout: Pamja e cicërimës
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
     salutation: "%{name},"
@@ -479,8 +552,8 @@ sq:
     warning: Hapni sytë me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
+    apply_for_account: Kërko ftesë
     change_password: Fjalëkalim
-    confirm_email: Ripohoni email-in
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
     didnt_get_confirmation: S’morët udhëzime ripohimi?
@@ -499,6 +572,10 @@ sq:
     reset_password: Ricaktoni fjalëkalimin
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
+    setup:
+      title: Rregullo
+    status:
+      account_status: Gjendja e llogarisë
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
     error: Mjerisht, pati një gabim gjatë kërkimit të llogarisë së largët
@@ -510,6 +587,8 @@ sq:
       return: Shfaq profilin e përdoruesit
       web: Kalo në web
     title: Ndiq %{acct}
+  challenge:
+    confirm: Vazhdo
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -517,34 +596,22 @@ sq:
       about_x_years: "%{count}v"
       almost_x_years: "%{count}v"
       half_a_minute: Mu tani
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Mu tani
       over_x_years: "%{count}v"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mj"
-      x_seconds: "%{count}s"
   deletes:
-    bad_password_msg: Provë e bukur, trimosha! Fjalëkalim i pasaktë
     confirm_password: Jepni fjalëkalimin tuaj të tanishëm që të verifikohet identiteti juaj
-    description_html: Kjo të heqë <strong>në mënyrë të përhershme, të pakthyeshme</strong> lëndë nga llogaria juaj dhe do ta çaktivizojë atë. Emri juaj i përdoruesit do të mbetet i rezervuar për të shmangur sozi të ardhme.
     proceed: Fshini llogarinë
     success_msg: Llogaria juaj u fshi me sukses
-    warning_html: Garantohet vetëm fshirja e lëndës prej këtij shërbyesi të veçantë. Lënda që është ndarë gjerësisht me të tjerët ka gjasa të lërë gjurmë. Shërbyesit <em>offline</em> dhe shërbyesit që janë shpajtuar prej përditësimeve tuaja, s’do t’i përditësojnë bazat e tyre të të dhënave.
-    warning_title: Mund të ketë lëndë të përhapur
   directories:
     directory: Drejtori profilesh
-    enabled: Gjendeni te lista e drejtorisë.
-    enabled_but_waiting: Keni zgjedhur të jeni pjesë e drejtorisë, por ende s’keni numrin minimum të ndjekësve (%{min_followers}) për përfshirje në të.
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
-    how_to_enable: S’keni zgjedhur të jeni i pranishëm te drejtoria. Mund ta bëni më poshtë. Përdorni te teksti i jetëshkrimit tuaj hashtagë, për t’u përfshirë nën hashtagë specifikë!
-    people:
-      one: "%{count} person"
-      other: "%{count} persona"
   errors:
+    '400': The request you submitted was invalid or malformed.
     '403': S’keni leje të shihni këtë faqe.
     '404': Faqja që po kërkonit, s’gjendet këtu.
+    '406': This page is not available in the requested format.
     '410': Faqja që po kërkonit, s’gjendet më këtu.
     '422':
       content: Verifikimi i sigurisë dështoi. Mos i bllokoni gjë cookie-t?
@@ -553,6 +620,7 @@ sq:
     '500':
       content: Na ndjeni, diçka shkoi ters në anën tonë.
       title: Kjo faqe s’është e saktë
+    '503': The page could not be served due to a temporary server failure.
     noscript_html: Që të përdorni aplikacionin web Mastodon, ju lutemi, aktivizoni JavaScript-in. Ndryshe, provoni për Mastodon-in një nga <a href="%{apps_path}">aplikacionet e brendshëm</a> të platformës tuaj.
   exports:
     archive_takeout:
@@ -563,9 +631,7 @@ sq:
       request: Kërkoni arkivin tuaj
       size: Madhësi
     blocks: Bllokoni
-    csv: CSV
     domain_blocks: Bllokime përkatësish
-    follows: Ndiqni
     lists: Lista
     mutes: Heshtoni
     storage: Depozitim për media
@@ -596,10 +662,19 @@ sq:
   generic:
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
+    order_by: Rendit sipas
     save_changes: Ruaji ndryshimet
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
+  identity_proofs:
+    active: Aktive
+    authorize: Po, autorizoje
+    identity: Identifiko
+    inactive: Ç'aktivizo
+    publicize_checkbox: 'Dhe cicëro këtë:'
+    status: Gjendja e verifikimit
+    view_proof: Shfaq evidencë
   imports:
     modes:
       merge: Përzieji
@@ -614,7 +689,7 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
-  in_memoriam_html: In Memoriam.
+  in_memoriam_html: Në përkujtim.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -646,9 +721,9 @@ sq:
       too_many: S’mund të bashkëngjiten më shumë se 4 kartela
   migrations:
     acct: emërpërdoruesi@përkatësi e llogarisë së re
-    currently_redirecting: 'Profili juaj është caktuar të ridrejtojë te:'
-    proceed: Ruaje
-    updated_msg: Rregullimi juaj për migrim llogarish u përditësua me sukses!
+    cancel: Anulo ridrejtimin
+    proceed_with_move: Lëviz ndjekësit
+    set_redirect: Cakto ridrejtim
   moderation:
     title: Moderim
   notification_mailer:
@@ -688,24 +763,28 @@ sq:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: B
-          million: M
           quadrillion: K
-          thousand: K
-          trillion: T
   pagination:
     newer: Më të ri
     next: Pasuesi
     older: Më të vjetër
     prev: I mëparshmi
-    truncate: "&hellip;"
   preferences:
-    languages: Gjuhë
     other: Tjetër
-    publishing: Publikim
-    web: Web
+  relationships:
+    activity: Aktivitet e llogarisë
+    dormant: Inaktive
+    followers: Ndjekësit
+    following: Të ndjekurit
+    invited: Të ftuarit
+    last_active: Së fundi aktiv
+    most_recent: Të fundit
+    moved: Lëvizur
+    mutual: Përbashkët
+    primary: Primare
+    relationship: Marrëdhënie
   remote_follow:
     acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
@@ -723,10 +802,6 @@ sq:
     reply:
       proceed: Ripohoni përgjigjen
       prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
-  remote_unfollow:
-    error: Gabim
-    title: Titull
-    unfollowed: U hoq ndjekja
   scheduled_statuses:
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
     over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
@@ -764,7 +839,7 @@ sq:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: platformë e panjohur
       windows: Windows
       windows_mobile: Windows Mobile
@@ -773,6 +848,10 @@ sq:
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
   settings:
+    account: Llogari
+    account_settings: Rregullimet e llogarisë
+    aliases: Shkurtesat e llogarisë
+    appearance: Dukja
     authorized_apps: Aplikacione të autorizuara
     back: Mbrapsht te Mastodon
     delete: Fshirje llogarie
@@ -791,9 +870,6 @@ sq:
       image:
         one: "%{count} figurë"
         other: "%{count} figura"
-      video:
-        one: "%{count} video"
-        other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
     disallowed_hashtags:
@@ -809,7 +885,6 @@ sq:
       reblog: S’mund të fiksohet një përforcim
     show_more: Shfaq më tepër
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Vetëm ndjekësve
       private_long: Shfaqua vetëm ndjekësve
@@ -827,10 +902,10 @@ sq:
       <h3 id="collect">Ç’të dhëna grumbullojmë?</h3>
 
       <ul>
-        <li><em>Të dhëna bazë llogarie</em>: Nëse regjistroheni në këtë shërbyes, mund t’ju kërkohet të jepni një emër përdoruesi, një adresë email dhe një fjalëkalim. Mundet të jepni edhe të dhëna shtesë profili, të tilla si emër në ekran dhe jetëshkrim, dhe të ngarkoni një foto profili dhe figurë kryesh. Emri i përdoruesit, emri për në ekran, jetëshkrimi, fotoja e profilit dhe figura për kryet shfaqen përherë publikisht.</li>
-        <li><em>Postime, ndjekje dhe të tjera të dhëna publike</em>: Lista e personave që ndiqni shfaqet publikisht, po njësoj edhe ajo e ndjekësve tuaj. Kur parashtroni një mesazh, depozitohet data dhe koha, si dhe aplikacioni prej nga u parashtrua mesazhi. Mesazhet mund të përmbajnë bashkëngjitje media, bie fjala, foto dhe video. Postimet publike dhe ato të pashfaqura janë të passhme publikisht. Kur një postim e vini të zgjedhur në profilin tuaj, edhe ky është informacion i passhëm publikisht. Postimet tuaja janë u dërgohen ndjekësve tuaj, në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Kur fshini postime, edhe kjo u dërgohet ndjekësve tuaj. Veprimi i riblogimit apo i parapëlqimit të një postimi tjetër është përherë publik.</li>
-        <li><em>Postime të drejtpërdrejta dhe ato vetëm për ndjekësit</em>: Krejt postimet depozitohen dhe trajtohen te shërbyesi. Postimet vetëm për ndjekës u dërgohen ndjekësve tuaj të cilët përmenden në to, dhe postimet e drejtpërdrejta u dërgohen vetëm përdoruesve të përmendur në to. Në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Përpiqemi pa hile të kufizojmë hyrjen në këto postime vetëm të personave të autorizuar, por shërbyesit e tjerë mund të mos bëjnë të njëjtën gjë. Ndaj është e rëndësishme të shqyrtoni shërbyesit pjesë e të cilëve janë ndjekësit tuaj. Te rregullimet mund të përdorni një mundësi për të miratuar ose hedhur poshtë dorazi ndjekës të rinj. <em>Ju lutemi, mbani parasysh se operatorët e shërbyesit dhe cilido shërbyes marrës mund t’i shohin mesazhe të tillë</em>, dhe që marrësit mund të bëjnë për ta foto ekrani, t’i kopjojnë ose t’i rindajnë ato me të tjerët. <em>Mos u jepni të tjerëve të dhëna të rrezikshme përmes Mastodon-it.</em></li>
-        <li><em>IP dhe të tjera tejtëdhëna</em>: Kur bëni hyrjen, regjistrojmë adresën IP prej nga hytë, si dhe emrin e shfletuesit tuaj. Krejt sesionet e hyrjeve janë të shqyrtueshme nga ju dhe shfuqizim, që nga rregullimet. Adresa e fundit IP e përdorur depozitohet për 12 muaj. Mund të mbajmë edhe regjistra shërbyesi të cilët përfshijnë adresën IP të çdo kërkese ndaj shërbyesit tonë.</li>
+      <li><em>Të dhëna bazë llogarie</em>: Nëse regjistroheni në këtë shërbyes, mund t’ju kërkohet të jepni një emër përdoruesi, një adresë email dhe një fjalëkalim. Mundet të jepni edhe të dhëna shtesë profili, të tilla si emër në ekran dhe jetëshkrim, dhe të ngarkoni një foto profili dhe figurë kryesh. Emri i përdoruesit, emri për në ekran, jetëshkrimi, fotoja e profilit dhe figura për kryet shfaqen përherë publikisht.</li>
+      <li><em>Postime, ndjekje dhe të tjera të dhëna publike</em>: Lista e personave që ndiqni shfaqet publikisht, po njësoj edhe ajo e ndjekësve tuaj. Kur parashtroni një mesazh, depozitohet data dhe koha, si dhe aplikacioni prej nga u parashtrua mesazhi. Mesazhet mund të përmbajnë bashkëngjitje media, bie fjala, foto dhe video. Postimet publike dhe ato të pashfaqura janë të passhme publikisht. Kur një postim e vini të zgjedhur në profilin tuaj, edhe ky është informacion i passhëm publikisht. Postimet tuaja janë u dërgohen ndjekësve tuaj, në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Kur fshini postime, edhe kjo u dërgohet ndjekësve tuaj. Veprimi i riblogimit apo i parapëlqimit të një postimi tjetër është përherë publik.</li>
+      <li><em>Postime të drejtpërdrejta dhe ato vetëm për ndjekësit</em>: Krejt postimet depozitohen dhe trajtohen te shërbyesi. Postimet vetëm për ndjekës u dërgohen ndjekësve tuaj të cilët përmenden në to, dhe postimet e drejtpërdrejta u dërgohen vetëm përdoruesve të përmendur në to. Në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Përpiqemi pa hile të kufizojmë hyrjen në këto postime vetëm të personave të autorizuar, por shërbyesit e tjerë mund të mos bëjnë të njëjtën gjë. Ndaj është e rëndësishme të shqyrtoni shërbyesit pjesë e të cilëve janë ndjekësit tuaj. Te rregullimet mund të përdorni një mundësi për të miratuar ose hedhur poshtë dorazi ndjekës të rinj. <em>Ju lutemi, mbani parasysh se operatorët e shërbyesit dhe cilido shërbyes marrës mund t’i shohin mesazhe të tillë</em>, dhe që marrësit mund të bëjnë për ta foto ekrani, t’i kopjojnë ose t’i rindajnë ato me të tjerët. <em>Mos u jepni të tjerëve të dhëna të rrezikshme përmes Mastodon-it.</em></li>
+      <li><em>IP dhe të tjera tejtëdhëna</em>: Kur bëni hyrjen, regjistrojmë adresën IP prej nga hytë, si dhe emrin e shfletuesit tuaj. Krejt sesionet e hyrjeve janë të shqyrtueshme nga ju dhe shfuqizim, që nga rregullimet. Adresa e fundit IP e përdorur depozitohet për 12 muaj. Mund të mbajmë edhe regjistra shërbyesi të cilët përfshijnë adresën IP të çdo kërkese ndaj shërbyesit tonë.</li>
       </ul>
 
       <hr class="spacer" />
@@ -840,9 +915,9 @@ sq:
       <p>Cilado prej të dhënave që grumbullojmë prej jush mund të përdoret në rrugët vijuese:</p>
 
       <ul>
-        <li>Për të mundësuar funksionimin bazë të Mastodon-it. Mundeni të ndërveproni me lëndën e personave të tjerë dhe të postoni lëndë tuajën vetëm kur jeni i futur në llogarinë tuaj. Për shembull, mund të ndiqni njerëz të tjerë për të parë postimet e tyre të ndërthurura te rrjedha juaj kohore e përshtatur.</li>
-        <li>Për të ndihmuar moderimin e bashkësisë, për shembull, duke krahasuar adresën tuaj IP me të tjera të njohura, për të përcaktuar shmangie nga dëbime ose cenime të tjera.</li>
-        <li>Adresa email që jepni mund të përdoret për t’ju dërguar informacion, njoftime mbi persona të tjerë që ndërveprojnë me lëndën tuaj ose që ju dërgojnë mesazhe, dhe për t’iu përgjigju pyetjeve dhe/ose kërkesave të tjera.</li>
+      <li>Për të mundësuar funksionimin bazë të Mastodon-it. Mundeni të ndërveproni me lëndën e personave të tjerë dhe të postoni lëndë tuajën vetëm kur jeni i futur në llogarinë tuaj. Për shembull, mund të ndiqni njerëz të tjerë për të parë postimet e tyre të ndërthurura te rrjedha juaj kohore e përshtatur.</li>
+      <li>Për të ndihmuar moderimin e bashkësisë, për shembull, duke krahasuar adresën tuaj IP me të tjera të njohura, për të përcaktuar shmangie nga dëbime ose cenime të tjera.</li>
+      <li>Adresa email që jepni mund të përdoret për t’ju dërguar informacion, njoftime mbi persona të tjerë që ndërveprojnë me lëndën tuaj ose që ju dërgojnë mesazhe, dhe për t’iu përgjigju pyetjeve dhe/ose kërkesave të tjera.</li>
       </ul>
 
       <hr class="spacer" />
@@ -858,8 +933,8 @@ sq:
       <p>Do të përpiqemi pa hile:</p>
 
       <ul>
-        <li>Të mbajmë regjistra shërbyesi që përmbajnë adresën IP të krejt kërkesave te ky shërbyes, sa kohë që regjistra të tillë mbahen, për jo më shumë se 90 ditë.</li>
-        <li>Të mbajmë adresat IP përshoqëruar me përdoruesit e regjistruar, për jo më shumë se 12 muaj.</li>
+      <li>Të mbajmë regjistra shërbyesi që përmbajnë adresën IP të krejt kërkesave te ky shërbyes, sa kohë që regjistra të tillë mbahen, për jo më shumë se 90 ditë.</li>
+      <li>Të mbajmë adresat IP përshoqëruar me përdoruesit e regjistruar, për jo më shumë se 12 muaj.</li>
       </ul>
 
       <p>Mund të kërkoni dhe të shkarkoni një arkiv të lëndës tuaj, përfshi postimet tuaja, bashkëngjitje media, foto profili, dhe figurë kryesh.</p>
@@ -911,7 +986,6 @@ sq:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
     description_html: Nëse aktivizoni <strong>mirëfilltësimin dyfaktorësh</strong>, hyrja do të kërkojë të jeni në zotërim të telefonit tuaj, i cili do të prodhojë kod që duhet ta jepni.

@@ -6,18 +6,21 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :hashtag, :emoji, :identity_proof
+                     :moved_to, :property_value, :identity_proof,
+                     :discoverable, :olm
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
-             :url, :manually_approves_followers
+             :url, :manually_approves_followers,
+             :discoverable
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
   has_many :virtual_tags, key: :tag
   has_many :virtual_attachments, key: :attachment
 
+  attribute :devices, unless: :instance_actor?
   attribute :moved_to, if: :moved?
   attribute :also_known_as, if: :also_known_as?
 
@@ -36,14 +39,22 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   has_one :icon,  serializer: ActivityPub::ImageSerializer, if: :avatar_exists?
   has_one :image, serializer: ActivityPub::ImageSerializer, if: :header_exists?
 
-  delegate :moved?, to: :object
+  delegate :moved?, :instance_actor?, to: :object
 
   def id
-    account_url(object)
+    object.instance_actor? ? instance_actor_url : account_url(object)
   end
 
   def type
-    object.bot? ? 'Service' : 'Person'
+    if object.instance_actor?
+      'Application'
+    elsif object.bot?
+      'Service'
+    elsif object.group?
+      'Group'
+    else
+      'Person'
+    end
   end
 
   def following
@@ -55,7 +66,11 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def inbox
-    account_inbox_url(object)
+    object.instance_actor? ? instance_actor_inbox_url : account_inbox_url(object)
+  end
+
+  def devices
+    account_collection_url(object, :devices)
   end
 
   def outbox
@@ -95,7 +110,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def url
-    short_account_url(object)
+    object.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(object)
   end
 
   def avatar_exists?
@@ -130,6 +145,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   class TagSerializer < ActivityPub::Serializer
+    context_extensions :hashtag
+
     include RoutingHelper
 
     attributes :type, :href, :name

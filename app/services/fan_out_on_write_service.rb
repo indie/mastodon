@@ -72,8 +72,8 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to hashtags"
 
     status.tags.pluck(:name).each do |hashtag|
-      Redis.current.publish("timeline:hashtag:#{hashtag}", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag}:local", @payload) if status.local?
+      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
+      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if status.local?
     end
   end
 
@@ -81,14 +81,22 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
 
     Redis.current.publish('timeline:public', @payload)
-    Redis.current.publish('timeline:public:local', @payload) if status.local?
+    if status.local?
+      Redis.current.publish('timeline:public:local', @payload)
+    else
+      Redis.current.publish('timeline:public:remote', @payload)
+    end
   end
 
   def deliver_to_media(status)
     Rails.logger.debug "Delivering status #{status.id} to media timeline"
 
     Redis.current.publish('timeline:public:media', @payload)
-    Redis.current.publish('timeline:public:local:media', @payload) if status.local?
+    if status.local?
+      Redis.current.publish('timeline:public:local:media', @payload)
+    else
+      Redis.current.publish('timeline:public:remote:media', @payload)
+    end
   end
 
   def deliver_to_own_conversation(status)

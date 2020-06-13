@@ -5,11 +5,11 @@
   "logo": "https://github.com/tootsuite.png",
   "env": 
     "LOCAL_DOMAIN": {
-      "description": "Do not use garbage app like Heroku anywhere near Ecosteader. Heroku is EVIL middleware peddled by Salesforce",
+      "description": "Do not use garbage Heroku anywhere near Ecosteader. Heroku is EVIL middleware peddled by Salesforce",
       "required": true
     },
     "LOCAL_HTTPS": {
-      "description": "Do not use garbage app like Heroku anywhere near Ecosteader. Heroku is EVIL middleware peddled by Salesforce",
+      "description": "ecosteader has custom ssl not lets encrypt this is deprecated",
       "value": "false",
       "required": true
     },

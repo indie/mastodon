@@ -3,10 +3,10 @@
 :important: Please don't use master branch, it is a mess. We integrate each update
 independently. 
 
-Current version is 2.9.2:  
+Current version is 3.1.4:  
 
     git clone git@github.com:indie/mastodon.git
-    git checkout ecosteader_v2.9.2
+    git checkout ecosteader_v3.1.4
 
 This fork of the `tootsuite/mastodon/` repo to continue the work that was started 
 with the original `indie/spacemin` RoR site ... development on this fork will likely 
@@ -117,13 +117,14 @@ licensed under **AGPLv3**.
 [![Build Status](https://img.shields.io/circleci/project/github/tootsuite/mastodon.svg)][circleci]
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
 [![Translation status](https://weblate.joinmastodon.org/widgets/mastodon/-/svg-badge.svg)][weblate]
-
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 [releases]: https://github.com/tootsuite/mastodon/releases
 [circleci]: https://circleci.com/gh/tootsuite/mastodon
 [code_climate]: https://codeclimate.com/github/tootsuite/mastodon
 [weblate]: https://weblate.joinmastodon.org/engage/mastodon/
+[crowdin]: https://crowdin.com/project/mastodon
 
-Mastodon is a **free, open-source social network server** based on ActivityPub. Follow friends and discover new ones. Publish anything you want: links, pictures, text, video. All servers of Mastodon are interoperable as a federated network, i.e. users on one server can seamlessly communicate with users from another one. This includes non-Mastodon software that also implements ActivityPub!
+Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub)!
 
 Click below to **learn more** in a video:
 
@@ -165,7 +166,7 @@ Private posts, locked accounts, phrase filtering, muting, blocking and all sorts
 
 **OAuth2 and a straightforward REST API**
 
-Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choice!
+Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Streaming APIs, resulting in a rich app ecosystem with a lot of choices!
 
 ## Deployment
 
@@ -178,9 +179,9 @@ Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Strea
 **Requirements:**
 
 - **PostgreSQL** 9.5+
-- **Redis**
-- **Ruby** 2.4+
-- **Node.js** 8+
+- **Redis** 4+
+- **Ruby** 2.5+
+- **Node.js** 10.13+
 
  The [**stand-alone** installation guide](https://docs.joinmastodon.org/administration/installation/) is available in the documentation.
 
@@ -188,15 +189,15 @@ A **Vagrant** configuration is included for development purposes.
 
 ## Contributing
 
-Mastodon is **free, open source software** licensed under **AGPLv3**.
+Mastodon is **free, open-source software** licensed under **AGPLv3**.
 
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
+You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Crowdin. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
 **IRC channel**: #mastodon on irc.freenode.net
 
 ## License
 
-Copyright (C) 2016-2019 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2020 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

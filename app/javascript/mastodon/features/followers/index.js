@@ -22,6 +22,7 @@ const mapStateToProps = (state, props) => ({
   isAccount: !!state.getIn(['accounts', props.params.accountId]),
   accountIds: state.getIn(['user_lists', 'followers', props.params.accountId, 'items']),
   hasMore: !!state.getIn(['user_lists', 'followers', props.params.accountId, 'next']),
+  isLoading: state.getIn(['user_lists', 'followers', props.params.accountId, 'isLoading'], true),
   blockedBy: state.getIn(['relationships', props.params.accountId, 'blocked_by'], false),
 });
 
@@ -34,13 +35,17 @@ class Followers extends ImmutablePureComponent {
     shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
-    this.props.dispatch(fetchAccount(this.props.params.accountId));
-    this.props.dispatch(fetchFollowers(this.props.params.accountId));
+    if (!this.props.accountIds) {
+      this.props.dispatch(fetchAccount(this.props.params.accountId));
+      this.props.dispatch(fetchFollowers(this.props.params.accountId));
+    }
   }
 
   componentWillReceiveProps (nextProps) {
@@ -55,7 +60,7 @@ class Followers extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount } = this.props;
+    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading } = this.props;
 
     if (!isAccount) {
       return (
@@ -77,19 +82,21 @@ class Followers extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
+        <ColumnBackButton multiColumn={multiColumn} />
 
         <ScrollableList
           scrollKey='followers'
           hasMore={hasMore}
+          isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
           shouldUpdateScroll={shouldUpdateScroll}
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
         >
           {blockedBy ? [] : accountIds.map(id =>
-            <AccountContainer key={id} id={id} withNote={false} />
+            <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
       </Column>

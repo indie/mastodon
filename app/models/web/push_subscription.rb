@@ -20,6 +20,10 @@ class Web::PushSubscription < ApplicationRecord
 
   has_one :session_activation, foreign_key: 'web_push_subscription_id', inverse_of: :web_push_subscription
 
+  validates :endpoint, presence: true
+  validates :key_p256dh, presence: true
+  validates :key_auth, presence: true
+
   def push(notification)
     I18n.with_locale(associated_user&.locale || I18n.default_locale) do
       push_payload(payload_for_notification(notification), 48.hours.seconds)
@@ -90,11 +94,11 @@ class Web::PushSubscription < ApplicationRecord
 
   def find_or_create_access_token
     Doorkeeper::AccessToken.find_or_create_for(
-      Doorkeeper::Application.find_by(superapp: true),
-      session_activation.user_id,
-      Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
-      Doorkeeper.configuration.access_token_expires_in,
-      Doorkeeper.configuration.refresh_token_enabled?
+      application: Doorkeeper::Application.find_by(superapp: true),
+      resource_owner: session_activation.user_id,
+      scopes: Doorkeeper::OAuth::Scopes.from_string('read write follow push'),
+      expires_in: Doorkeeper.configuration.access_token_expires_in,
+      use_refresh_token: Doorkeeper.configuration.refresh_token_enabled?
     )
   end
 end

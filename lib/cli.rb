@@ -9,7 +9,9 @@ require_relative 'mastodon/search_cli'
 require_relative 'mastodon/settings_cli'
 require_relative 'mastodon/statuses_cli'
 require_relative 'mastodon/domains_cli'
+require_relative 'mastodon/preview_cards_cli'
 require_relative 'mastodon/cache_cli'
+require_relative 'mastodon/upgrade_cli'
 require_relative 'mastodon/version'
 
 module Mastodon
@@ -42,8 +44,14 @@ module Mastodon
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
     subcommand 'domains', Mastodon::DomainsCLI
 
+    desc 'preview_cards SUBCOMMAND ...ARGS', 'Manage preview cards'
+    subcommand 'preview_cards', Mastodon::PreviewCardsCLI
+
     desc 'cache SUBCOMMAND ...ARGS', 'Manage cache'
     subcommand 'cache', Mastodon::CacheCLI
+
+    desc 'upgrade SUBCOMMAND ...ARGS', 'Various version upgrade utilities'
+    subcommand 'upgrade', Mastodon::UpgradeCLI
 
     option :dry_run, type: :boolean
     desc 'self-destruct', 'Erase the server from the federation'
@@ -92,6 +100,8 @@ module Mastodon
 
       prompt.warn('Do NOT interrupt this process...')
 
+      Setting.registrations_mode = 'none'
+
       Account.local.without_suspended.find_each do |account|
         payload = ActiveModelSerializers::SerializableResource.new(
           account,
@@ -106,7 +116,7 @@ module Mastodon
             [json, account.id, inbox_url]
           end
 
-          account.update_column(:suspended, true)
+          account.suspend!
         end
 
         processed += 1

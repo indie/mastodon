@@ -82,35 +82,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '#title' do
-    # rubocop:disable Style/InterpolationCheck
-
-    let(:account) { subject.account }
-
-    context 'if destroyed?' do
-      it 'returns "#{account.acct} deleted status"' do
-        subject.destroy!
-        expect(subject.title).to eq "#{account.acct} deleted status"
-      end
-    end
-
-    context 'unless destroyed?' do
-      context 'if reblog?' do
-        it 'returns "#{account.acct} shared a status by #{reblog.account.acct}"' do
-          reblog = subject.reblog = other
-          expect(subject.title).to eq "#{account.acct} shared a status by #{reblog.account.acct}"
-        end
-      end
-
-      context 'unless reblog?' do
-        it 'returns "New status by #{account.acct}"' do
-          subject.reblog = nil
-          expect(subject.title).to eq "New status by #{account.acct}"
-        end
-      end
-    end
-  end
-
   describe '#hidden?' do
     context 'if private_visibility?' do
       it 'returns true' do
@@ -296,99 +267,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.as_home_timeline' do
-    let(:account) { Fabricate(:account) }
-    let(:followed) { Fabricate(:account) }
-    let(:not_followed) { Fabricate(:account) }
-
-    before do
-      Fabricate(:follow, account: account, target_account: followed)
-
-      @self_status = Fabricate(:status, account: account, visibility: :public)
-      @self_direct_status = Fabricate(:status, account: account, visibility: :direct)
-      @followed_status = Fabricate(:status, account: followed, visibility: :public)
-      @followed_direct_status = Fabricate(:status, account: followed, visibility: :direct)
-      @not_followed_status = Fabricate(:status, account: not_followed, visibility: :public)
-
-      @results = Status.as_home_timeline(account)
-    end
-
-    it 'includes statuses from self' do
-      expect(@results).to include(@self_status)
-    end
-
-    it 'does not include direct statuses from self' do
-      expect(@results).to_not include(@self_direct_status)
-    end
-
-    it 'includes statuses from followed' do
-      expect(@results).to include(@followed_status)
-    end
-
-    it 'does not include direct statuses mentioning recipient from followed' do
-      Fabricate(:mention, account: account, status: @followed_direct_status)
-      expect(@results).to_not include(@followed_direct_status)
-    end
-
-    it 'does not include direct statuses not mentioning recipient from followed' do
-      expect(@results).not_to include(@followed_direct_status)
-    end
-
-    it 'does not include statuses from non-followed' do
-      expect(@results).not_to include(@not_followed_status)
-    end
-  end
-
-  describe '.as_direct_timeline' do
-    let(:account) { Fabricate(:account) }
-    let(:followed) { Fabricate(:account) }
-    let(:not_followed) { Fabricate(:account) }
-
-    before do
-      Fabricate(:follow, account: account, target_account: followed)
-
-      @self_public_status = Fabricate(:status, account: account, visibility: :public)
-      @self_direct_status = Fabricate(:status, account: account, visibility: :direct)
-      @followed_public_status = Fabricate(:status, account: followed, visibility: :public)
-      @followed_direct_status = Fabricate(:status, account: followed, visibility: :direct)
-      @not_followed_direct_status = Fabricate(:status, account: not_followed, visibility: :direct)
-
-      @results = Status.as_direct_timeline(account)
-    end
-
-    it 'does not include public statuses from self' do
-      expect(@results).to_not include(@self_public_status)
-    end
-
-    it 'includes direct statuses from self' do
-      expect(@results).to include(@self_direct_status)
-    end
-
-    it 'does not include public statuses from followed' do
-      expect(@results).to_not include(@followed_public_status)
-    end
-
-    it 'does not include direct statuses not mentioning recipient from followed' do
-      expect(@results).to_not include(@followed_direct_status)
-    end
-
-    it 'does not include direct statuses not mentioning recipient from non-followed' do
-      expect(@results).to_not include(@not_followed_direct_status)
-    end
-
-    it 'includes direct statuses mentioning recipient from followed' do
-      Fabricate(:mention, account: account, status: @followed_direct_status)
-      results2 = Status.as_direct_timeline(account)
-      expect(results2).to include(@followed_direct_status)
-    end
-
-    it 'includes direct statuses mentioning recipient from non-followed' do
-      Fabricate(:mention, account: account, status: @not_followed_direct_status)
-      results2 = Status.as_direct_timeline(account)
-      expect(results2).to include(@not_followed_direct_status)
-    end
-  end
-
   describe '.as_public_timeline' do
     it 'only includes statuses with public visibility' do
       public_status = Fabricate(:status, visibility: :public)
@@ -492,6 +370,33 @@ RSpec.describe Status, type: :model do
           viewer.block_domain!('test.com')
           expect(subject).to include(local_status)
           expect(subject).not_to include(remote_status)
+        end
+      end
+    end
+
+    context 'with a remote_only option set' do
+      let!(:local_account)  { Fabricate(:account, domain: nil) }
+      let!(:remote_account) { Fabricate(:account, domain: 'test.com') }
+      let!(:local_status)   { Fabricate(:status, account: local_account) }
+      let!(:remote_status)  { Fabricate(:status, account: remote_account) }
+
+      subject { Status.as_public_timeline(viewer, :remote) }
+
+      context 'without a viewer' do
+        let(:viewer) { nil }
+
+        it 'does not include local instances statuses' do
+          expect(subject).not_to include(local_status)
+          expect(subject).to include(remote_status)
+        end
+      end
+
+      context 'with a viewer' do
+        let(:viewer) { Fabricate(:account, username: 'viewer') }
+
+        it 'does not include local instances statuses' do
+          expect(subject).not_to include(local_status)
+          expect(subject).to include(remote_status)
         end
       end
     end

@@ -11,7 +11,7 @@ $classic-secondary-color: #9bae5a;
 $classic-highlight-color: #938f89;
 
 // Differences
-$success-green: #3c754d;
+$success-green: lighten(#3c754d, 8%);
 
 $base-overlay-background: $white !default;
 $valid-value-color: $success-green !default;
@@ -20,7 +20,7 @@ $ui-base-color: $classic-secondary-color !default;
 $ui-base-lighter-color: #b0c0cf;
 $ui-primary-color: #9bcbed;
 $ui-secondary-color: $classic-base-color !default;
-$ui-highlight-color: #2b5fd9;
+$ui-highlight-color: #2b90d9;
 
 $primary-text-color: $graphite !default;
 $darker-text-color: $darkgraphite !default;
@@ -42,3 +42,5 @@ $account-background-color: $white !default;
 @function lighten($color, $amount) {
   @return hsl(hue($color), saturation($color), lightness($color) - $amount);
 }
+
+$emojis-requiring-inversion: 'chains';
