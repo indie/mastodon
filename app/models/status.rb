@@ -22,6 +22,8 @@
 #  application_id         :bigint(8)
 #  in_reply_to_account_id :bigint(8)
 #  poll_id                :bigint(8)
+#  local_only             :boolean
+#  activity_pub_type      :string
 #  deleted_at             :datetime
 #
 
@@ -139,7 +141,7 @@ class Status < ApplicationRecord
     ids << account_id if local?
 
     if preloaded.nil?
-      ids += mentions.where(account: Account.local).pluck(:account_id)
+      ids += mentions.where(account: Account.local, silent: false).pluck(:account_id)
       ids += favourites.where(account: Account.local).pluck(:account_id)
       ids += reblogs.where(account: Account.local).pluck(:account_id)
       ids += bookmarks.where(account: Account.local).pluck(:account_id)
