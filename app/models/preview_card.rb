@@ -23,6 +23,7 @@
 #  updated_at                   :datetime         not null
 #  embed_url                    :string           default(""), not null
 #  image_storage_schema_version :integer
+#  blurhash                     :string
 #
 
 class PreviewCard < ApplicationRecord

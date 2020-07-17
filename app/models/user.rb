@@ -38,6 +38,8 @@
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
 #  approved                  :boolean          default(TRUE), not null
+#  sign_in_token             :string
+#  sign_in_token_sent_at     :datetime
 #
 
 class User < ApplicationRecord
