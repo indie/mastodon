@@ -42,18 +42,20 @@
 /* linernotes dark */
 
 :root {
---bg: rgb(26,21,21);
---text: rgb(225,225,225);
---textBold: rgb(255,255,255);
---textMuted: rgb(153,157,156);
+--bg: #1c1a06;
+--text: #5c6a63;
+--textBold: #314255;
+--textMuted: #5f6872;
 
---bgPage: rgb(42,38,37);
+--bgPage: #1c1a05;
 --textPage: var(--text);
 --textPageBold: var(--textBold);
 --textPageMuted: var(--textMuted);
 
---bgHead: rgb(255,122,23);
+--bgHead: #0c1a2a;
 --textHead: var(--textBold);
---accent: rgb(3, 180, 0);
+--accent: #8f8a5c;
 --accentText: var(--textBold);
+
+
 }
