@@ -80,7 +80,7 @@ your own branch. If you followed ths guide on a true Linux system, you should se
     bundle update --bundler
     bundle install
 
-Success!  
+Success!
 
      Bundle complete! 117 Gemfile dependencies, 269 gems now installed.
      Use `bundle info [gemname]` to see where a bundled gem is installed.
@@ -97,7 +97,7 @@ Install yarn via npm, and symbolically link to default
     npm install -g yarn
     sudo ln -s /usr/local/bin/yarn /usr/bin/yarn
 
-Finally, confirm you have a recent version  
+Finally, confirm you have a recent version
  
 To build a local development environment that actually runs Mastodon like it will be on a production server, a user named `mastodon` needs to exist; let's set that up with your postgres:
 
@@ -205,7 +205,7 @@ Optional alternative commands for production system replication:
     
 -----------------    
     
- (Additional notes on UPGRADING PostGRES including some .jp-friendly help):  
+ (Additional notes on UPGRADING PostGRES including some .jp-friendly help): 
  
     dpkg -l | grep postgresql
 
