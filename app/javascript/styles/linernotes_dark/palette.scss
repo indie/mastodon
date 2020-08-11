@@ -39,23 +39,22 @@
 *     It is now possible to use a dark bgPage and light bg, or vice-versa.
 ------------------------------------------------------------------------------*/
 
-/* linernotes dark */
+/* variations */
 
 :root {
---bg: #1c1a06;
+--bg: #40423d;
 --text: #5c6a63;
 --textBold: #314255;
---textMuted: #5f6872;
+--textMuted: #BDACA5;
 
---bgPage: #1c1a05;
+--bgPage: #1C1E19;
 --textPage: var(--text);
---textPageBold: var(--textBold);
+--textPageBold: #634B58;
 --textPageMuted: var(--textMuted);
 
---bgHead: #0c1a2a;
---textHead: var(--textBold);
---accent: #8f8a5c;
+--bgHead: #40423d;
+--textHead: #BDACA5;
+--accent: #10100f;
 --accentText: var(--textBold);
-
-
 }
+
