@@ -1,9 +1,8 @@
 
-
 # Apache2 Configuration for Mastodon 
 ## Return of the ECOSTEADER Mastodon
 
-REQUIRED:  Apache2 
+REQUIRED:  [Apache2] 
 
 Set up your localhost environment to develop and backup your custom Mastodon instance. 
 
@@ -26,11 +25,11 @@ has been tested and works on Ubuntu 18.10 and Linux Mint 19.2, but your system m
 
 Install prerequisites
 
-    sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
-
+    sudo apt install autoconf bison build-essential zlib1g-dev 
+    libncurses5-dev libffi-dev libreadline-dev libssl-dev libyaml-dev
 
 Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; upstream 
-are pretty good about keeping master RUBIES secure.  Note Heroku's use of [nginx is permanantly insecure].
+are pretty good about keeping master RUBIES secure.  Note Heroku's use of [nginx as permanantly insecure].
 
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -46,7 +45,7 @@ Now build the plugins directory
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
     rbenv install -l
     rbenv install 2.6.5
-    rbenv global 2.6.5
+    rbenv global 2.6.5 (this can be updated as needed with rehash) 
     cd mastodon
     gem install bundler:2.1.2
 
@@ -56,7 +55,7 @@ as the jemalloc can help reduce memory usage on production systems.
     
 The next dependencies we add are for SSL: 
 
-    sudo apt install -y libssl-dev libyaml-dev libreadline6-dev
+    sudo apt install -y  
 
 Get your postgres going; here we also add a client lib. Then you can log-in and check that it 
 works; as per standard postgres, use `\q` to exit.
@@ -267,5 +266,5 @@ Lastly,
 
     systemctl restart mastodon-{web,sidekiq,streaming}.service`
 
-
-[nginx is permanantly insecure]:https://www.zdnet.com/article/russian-police-raid-nginx-moscow-office/
+[Apache]:https://httpd.apache.org/docs/current/
+[nginx as permanantly insecure]:https://www.zdnet.com/article/russian-police-raid-nginx-moscow-office/
