@@ -43,18 +43,18 @@
 
 :root {
 --bg: #40423d;
---text: #ff999a;
---textBold: #9ff500;
---textMuted: #fff4dd;
+--text: #262626;
+--textBold: ##262626;
+--textMuted: #7D5035;
 
 --bgPage: #1C1E19;
 --textPage: var(--text);
 --textPageBold: #ff999a;
 --textPageMuted: var(--textMuted);
 
---bgHead: #40423d;
---textHead: #9ff500;
---accent: #10100f;
+--bgHead: #322e2d;
+--textHead: #b5c023;
+--accent: #998e70;
 --accentText: var(--textBold);
 }
 

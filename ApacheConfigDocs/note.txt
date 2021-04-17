@@ -1,5 +1,7 @@
 # We NEVER EVER EVER GIVE UP
-# https://github.com/indie/mastodon/commit/a54e517b470649ffd207e0f6354837664071665b
+# https://github.com/indie/qmec/commit/00d673d4ec1cb63e4d1a1062eb9550410eee1d52
+
+# archived_a54e517b470649ffd207e0f6354837664071665b
 
 Ancestors 
 
@@ -26,3 +28,32 @@ for which wee
                               blue some say it was like India ink 
 
   shimmer glimmer like feather or atmospheric dancing in the weather 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+¨
+it is not the software that´s the problem; it´s the operator
+
+¨
+
+.txt
