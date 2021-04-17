@@ -1,13 +1,13 @@
 
 
-# Apache2 Configuration for Mastodon 
-## Return of the ECOSTEADER Mastodon
+# Mastodon Fediverse servers with Apache2 
+# Localize your stream
 
 REQUIRED:  Apache2 
 
-Set up your localhost environment to develop and backup your custom Mastodon instance. 
+Set up your localhost environment to theme, develop and backup your custom Mastodon server.
 
-### IMPORTANT  
+### RECOMMENDED
 
     sudo apt remove nginx
     sudo apt --purge remove nginx/
@@ -17,17 +17,19 @@ Set up your localhost environment to develop and backup your custom Mastodon ins
 
 Configure your SSH on GitHub. This tutorial assumes you have already configured SSH keys with 
 your GitHub account. Then start your own branch so you can track your own changes. This guide 
-has been tested and works on Ubuntu 18.10 and Linux Mint 19.2, but your system may be different.
-
+has been tested and works on Ubuntu 18.10 and Linux Mint 19.2 and Linux Mint 20, though it can
+work on any GNU/Linux system.
 
     git clone git@github.com:indie/mastodon.git 
     cd mastodon && git checkout ecosteader_3.3 
     git pull 
     git checkout branch your_branch_name 
 
-Install prerequisites
+Install prerequisites for server and international indigenous languages support
 
     sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+    sudo apt install git libwebsockets-dev pkg-config  libprotobuf-dev libprotobuf-c-dev protobuf-compiler  
+
 
 
 Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; upstream 

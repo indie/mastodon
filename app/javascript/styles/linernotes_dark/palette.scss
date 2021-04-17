@@ -42,18 +42,18 @@
 /* variations */
 
 :root {
---bg: #40423d;
---text: #262626;
---textBold: ##262626;
---textMuted: #7D5035;
+--bg: #170f0d;
+--text: #c49900;
+--textBold: #c49900;
+--textMuted: #e6ca7b;
 
 --bgPage: #1C1E19;
 --textPage: var(--text);
---textPageBold: #ff999a;
+--textPageBold: #c49900;
 --textPageMuted: var(--textMuted);
 
 --bgHead: #322e2d;
---textHead: #b5c023;
+--textHead: ##783421;
 --accent: #998e70;
 --accentText: var(--textBold);
 }

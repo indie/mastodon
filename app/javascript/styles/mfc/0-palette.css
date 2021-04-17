@@ -44,78 +44,58 @@
 */
 
 
-/* Clean Slate:
-* white columns on a light-grey page, with dark grey headers and blue accent.
+
+/* basic
 */
+
 :root {
---bg: #fff;
---text: #123;
---textBold: #000;
---textMuted: #666;
-
---bgPage: #ddd;
---textPage: var(--text);
---textPageBold: var(--textBold);
---textPageMuted: var(--textMuted);
-
---bgHead: #333;
---textHead: #fff;
---accent: #09f;
---accentText: var(--textHead);
-}
-
-/* Droid/Flamingo:
-* dark neutral-grey page, with either Android Green or Flamingo accent.
-*/
-:root {
---bg: #222;
---text: #ddd;
---textBold: #fff;
---textMuted: #777;
-
---bgPage: #111;
---textPage: var(--text);
---textPageBold: var(--textBold);
---textPageMuted: var(--textMuted);
-
---bgHead: #333;
---textHead: var(--textBold);
---accent: #a4c639;  /* flamingo: #f09 */
---accentText: var(--textHead);
-}
-
-/* Midnight Blue:
-* a dark blue palette based loosely on Twitter's night mode.
-*/
-:root {
---bg: #123;
---text: #d0d8e0;
---textBold: #fff;
---textMuted: #808890;
+--bg: #322e2d;
+--text: #ffedb9;
+--textBold: #783421;
+--textMuted: #9e7a19;
 
 --bgPage: #051119;
 --textPage: var(--text);
 --textPageBold: var(--textBold);
 --textPageMuted: var(--textMuted);
 
---bgHead: #357;
+--bgHead: #0d0a00;
 --textHead: var(--textBold);
---accent: #09f;
+--accent: #c49900;
+--accentText: var(--textHead);
+}
+
+/* NotBlue:
+* but dark bg.
+*/
+:root {
+--bg: #322e2d;
+--text: #d0d8e0;
+--textBold: #fff;
+--textMuted: #9e7a19;
+
+--bgPage: #051119;
+--textPage: var(--text);
+--textPageBold: var(--textBold);
+--textPageMuted: var(--textMuted);
+
+--bgHead: #0d0a00;
+--textHead: var(--textBold);
+--accent: #ca7751;
 --accentText: var(--textBold);
 }
 
 /*  
 * Testing palette:
-* light grey columns, slate grey background, turquoise headers, orange accents.
-* (a bit garish, but sufficiently "different" to catch any unthemed elements.)
+* modified for Ecosteader Turtle Island theme
 */
 :root {
---bg: #d9e1e8;
---text: #234;
---textBold: #000000;
---textMuted: #579;
+--bg: #322e2d;
+--text: #ffedb9;
+--textBold: #43391d;
+--textMuted: #c49900;
 
---bgPage: #345;
+--bgPage: #051119;
 --textPage: #ddd;
 --textPageBold: #fff;
 --textPageMuted: #aaa;

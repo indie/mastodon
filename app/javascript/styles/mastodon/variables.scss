@@ -1,4 +1,4 @@
-// Commonly used web colors
+// Theme and such
 $black: #000000;            // Black
 $white: #ffffff;            // White
 $success-green: #79bd9a !default;    // Padua
@@ -8,17 +8,17 @@ $gold-star: #ca8f04 !default;        // Dark Goldenrod
 
 $red-bookmark: $warning-red;
 
-// Values from the classic Mastodon UI
-$classic-base-color: #282c37;         // Midnight Express
-$classic-primary-color: #9baec8;      // Echo Blue
-$classic-secondary-color: #d9e1e8;    // Pattens Blue
-$classic-highlight-color: #2b90d9;    // Summer Sky
+// ecosteader autonomous
+$classic-base-color: #422e29;         // TurtleBack
+$classic-primary-color: #783421;      // Coneflower
+$classic-secondary-color: #feeda7;    // TurtleYarrow
+$classic-highlight-color: #9e7a19;    // WarmRock
 
 // Variables for defaults in UI
-$base-shadow-color: $black !default;
-$base-overlay-background: $black !default;
+$base-shadow-color: #0d0a00 !default;
+$base-overlay-background: #322e2d !default;
 $base-border-color: $white !default;
-$simple-background-color: $white !default;
+$simple-background-color: #938a71 !default;
 $valid-value-color: $success-green !default;
 $error-value-color: $error-red !default;
 

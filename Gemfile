@@ -19,12 +19,6 @@ gem 'pg', '~> 1.2'
 gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.5'
 gem 'dotenv-rails', '~> 2.7'
-
-# gem 'elasticsearch-transport', git: 'git://github.com/elasticsearch/elasticsearch-ruby.git'
-# gem 'faraday'
-gem 'aws-sdk-s3', '~> 1.66', require: false
-gem 'fog-core', '<= 2.1.0'
-gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
 gem 'paperclip-av-transcoder', '~> 0.6'
 gem 'streamio-ffmpeg', '~> 3.0'
@@ -37,7 +31,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.1'
-gem 'cld3', '~> 3.3.0'
+gem 'cld3', '~> 3.4.1'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
 
@@ -122,7 +116,6 @@ end
 group :test do
   gem 'capybara', '~> 3.32'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.11'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.0'
