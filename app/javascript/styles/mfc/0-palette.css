@@ -61,7 +61,7 @@
 
 --bgHead: #0d0a00;
 --textHead: var(--textBold);
---accent: #c49900;
+--accent: #783421;
 --accentText: var(--textHead);
 }
 
@@ -81,7 +81,7 @@
 
 --bgHead: #0d0a00;
 --textHead: var(--textBold);
---accent: #ca7751;
+--accent: #FDD140;
 --accentText: var(--textBold);
 }
 
@@ -93,7 +93,7 @@
 --bg: #322e2d;
 --text: #ffedb9;
 --textBold: #43391d;
---textMuted: #c49900;
+--textMuted: #783421;
 
 --bgPage: #051119;
 --textPage: #ddd;
@@ -101,7 +101,7 @@
 --textPageMuted: #aaa;
 
 --bgHead: darkturquoise;
---textHead: #345;
+--textHead: #FDD140;
 --accent: #ff3e00;
 --accentText: var(--textPageBold);
 }

@@ -25,7 +25,7 @@ work on any GNU/Linux system.
     git pull 
     git checkout branch your_branch_name 
 
-Install prerequisites for server and international indigenous languages support
+Install prerequisites for Apache and international indigenous_lang support
 
     sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
     sudo apt install git libwebsockets-dev pkg-config  libprotobuf-dev libprotobuf-c-dev protobuf-compiler  
@@ -62,11 +62,11 @@ The next dependencies we add are for SSL:
     sudo apt install -y libssl-dev libyaml-dev libreadline6-dev
 
 Get your postgres going; here we also add a client lib. Then you can log-in and check that it 
-works; as per standard postgres, use `\q` to exit.
+works; as per standard postgres; use `\q` to exit.
     
     sudo apt install postgresql postgresql-contrib libpq-dev
     sudo -u postgres psql
-    psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
+    psql (12.6 (Ubuntu 12.6-0ubuntu0.20.04.1))
      Type "help" for help.
 
      postgres=# \q
@@ -77,13 +77,12 @@ it can do the most good.
      sudo apt install libidn11-dev
 
 Finally are we ready to run `bundle install`. Be sure you're at the root of the cloned `mastodon` directory, and on 
-your own branch. If you followed ths guide on a true Linux system, you should see SUCCESS: 
+your own branch.
 
     bundle update --bundler
     bundle install
 
 Success!
-
      Bundle complete! 117 Gemfile dependencies, 269 gems now installed.
      Use `bundle info [gemname]` to see where a bundled gem is installed.
      
@@ -101,11 +100,7 @@ Install yarn via npm, and symbolically link to default
 
 Finally, confirm you have a recent version
  
-To build a local development environment that actually runs Mastodon like it will be on a production server, a user named `mastodon` needs to exist; let's set that up with your postgres:
-
-     $ sudo -u postgres psql
-     psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
-     Type "help" for help.
+To build a local development environment that actually runs Mastodon like it will be on a production server, a user named `mastodon` needs to exist; set that up with your postgres:
 
      postgres=# CREATE USER mastodon CREATEDB;
      CREATE ROLE
@@ -137,9 +132,8 @@ steals your data! It can be especially dangerous when those same webhosts actual
 own customers with malware and bots that throttle the true content of an instance as a means to 
 exploit a customer's thriftiness.
 
-[RageQuit] (recently renamed) is another option to modify the default NGINX 
-frontend configs for Mastodon streaming; it calls itself "A WIP blazingly fast drop-in replacement 
-for the Mastodon streaming api server."
+[RageQuit] calls itself "A WIP blazingly fast drop-in replacement for the Mastodon streaming 
+api server."
 
 
 ### The good news
@@ -153,7 +147,7 @@ your development machine.
 
 Backup your production (copy) scripts and code: 
 
-    pg_dump -Fc -U postgres mastodon_production > db_dec22_2019.dump
+    pg_dump -Fc -U postgres mastodon_production > 21_April_2021.dump
 
 
 ## Prepare environment for streaming
@@ -183,7 +177,7 @@ To set-up a new database
 OR To restore an old or "backup" database locally, first create a place for it to be restored in postgres:
 
      sudo -u postgres psql
-     psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
+     psql (12.6 (Ubuntu 12.6-0ubuntu0.20.04.1))
      Type "help" for help.
 
      postgres=# create database mastodon_development with owner mastodon;
@@ -192,7 +186,7 @@ OR To restore an old or "backup" database locally, first create a place for it t
 
 Then run `pg_restore` 
 
-    sudo -u postgres pg_restore -U postgres -d mastodon_development -v /backups/backup_18May2021.dump
+    sudo -u postgres pg_restore -U postgres -d mastodon_development -v /backups/_21_April_2021.dump
     bin/rails db:schema:load RAILS_ENV=development  #may be needed depending on your configs
     bin/rails db:migrate RAILS_ENV=development
 
