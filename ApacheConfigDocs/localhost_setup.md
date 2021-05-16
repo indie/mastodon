@@ -1,35 +1,30 @@
 
-
 # Mastodon Fediverse servers with Apache2 
 # Localize your stream
 
-REQUIRED:  Apache2 
+## 
 
-Set up your localhost environment to theme, develop and backup your custom Mastodon server.
+Set up your localhost environment to develop and backup your custom Mastodon instance. 
 
-### RECOMMENDED
+### Apache not nginx -- remove to eliminate potential conflicts 
 
     sudo apt remove nginx
     sudo apt --purge remove nginx/
-    sudo apt --purge remove nginx
+    sudo apt --purge remove nginx 
 
 ## Get started
 
-Configure your SSH on GitHub. This tutorial assumes you have already configured SSH keys with 
-your GitHub account. Then start your own branch so you can track your own changes. This guide 
-has been tested and works on Ubuntu 18.10 and Linux Mint 19.2 and Linux Mint 20, though it can
-work on any GNU/Linux system.
+        
 
     git clone git@github.com:indie/mastodon.git 
-    cd mastodon && git checkout ecosteader_3.3 
+    cd mastodon && git checkout ecosteader_v3.3
     git pull 
     git checkout branch your_branch_name 
 
-Install prerequisites for Apache and international indigenous_lang support
+System-based install prerequisites:
 
     sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
-    sudo apt install git libwebsockets-dev pkg-config  libprotobuf-dev libprotobuf-c-dev protobuf-compiler  
-
+    apache2 node-cacache libmemcached-dev libnss-cache
 
 
 Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; upstream 
@@ -59,14 +54,14 @@ as the jemalloc can help reduce memory usage on production systems.
     
 The next dependencies we add are for SSL: 
 
-    sudo apt install -y libssl-dev libyaml-dev libreadline6-dev
+    sudo apt install -y libssl-dev libyaml-dev libreadline6-dev libicu-dev
 
 Get your postgres going; here we also add a client lib. Then you can log-in and check that it 
-works; as per standard postgres; use `\q` to exit.
+works; as per standard postgres, use `\q` to exit.
     
     sudo apt install postgresql postgresql-contrib libpq-dev
     sudo -u postgres psql
-    psql (12.6 (Ubuntu 12.6-0ubuntu0.20.04.1))
+    psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
      Type "help" for help.
 
      postgres=# \q
@@ -77,30 +72,23 @@ it can do the most good.
      sudo apt install libidn11-dev
 
 Finally are we ready to run `bundle install`. Be sure you're at the root of the cloned `mastodon` directory, and on 
-your own branch.
+your own branch. If you followed ths guide on a true Linux system, you should see SUCCESS: 
 
     bundle update --bundler
     bundle install
 
 Success!
+
      Bundle complete! 117 Gemfile dependencies, 269 gems now installed.
      Use `bundle info [gemname]` to see where a bundled gem is installed.
      
-
-Remove default system yarn, if any (it's probably old; you can check the date as follows) 
-
-     ls -al /usr/bin/yarn 
-     -rwxr-xr-x 1 root root 20734 Feb 23  2018
-     rm -rf /usr/bin/yarn
-
-Install yarn via npm, and symbolically link to default 
-
-    npm install -g yarn
-    sudo ln -s /usr/local/bin/yarn /usr/bin/yarn
-
-Finally, confirm you have a recent version
  
-To build a local development environment that actually runs Mastodon like it will be on a production server, a user named `mastodon` needs to exist; set that up with your postgres:
+To build a local development environment that actually runs Mastodon like it will be on a 
+production server, a user named `mastodon` needs to exist; let's set that up with your postgres:
+
+     $ sudo -u postgres psql
+     psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
+     Type "help" for help.
 
      postgres=# CREATE USER mastodon CREATEDB;
      CREATE ROLE
@@ -120,40 +108,24 @@ and third-party things that are not clear on what they are doing to your system.
 malicious actors that want to destroy what we're building; don't let them! 
 
 
-### NodeJS & Yarn vs RageQuit
-
-This is where things can get tricky. 
-
-The long and short of this is: some webhosts, like AWS or Heroku, absolutely want you to push 
-traffic through bottlenecks they can slow down; this is how they make money or attempt to "justify" 
-putting your site on some sort of convoluted metered system (Linode's switch to "hourly" 
-billing that destroyed Ecosteader's original Mastodon instance, for example). Heroku actually 
-steals your data! It can be especially dangerous when those same webhosts actually target their 
-own customers with malware and bots that throttle the true content of an instance as a means to 
-exploit a customer's thriftiness.
-
-[RageQuit] calls itself "A WIP blazingly fast drop-in replacement for the Mastodon streaming 
-api server."
+Finally, confirm you have a recent version. 
 
 
-### The good news
-
-Since we're running an Apache2 (2.4.18) frontend that has been thoroughly tested and "works", the 
-good news is that we have plenty of options that don't involve noisy Nginx. The NodeJS/Yarn config 
-**will** work with a few minor adjustments to the `tootsuite/mastodon` default code as long as we 
-don't implement anything on the NGINX side. We won't dig too much into those changes, but they are 
-readily available in the `ecosteaderfx_2.8_master` repo, which you should already have cloned to 
-your development machine.
+## Migrating a database from nginx to Apache server
 
 Backup your production (copy) scripts and code: 
 
-    pg_dump -Fc -U postgres mastodon_production > 21_April_2021.dump
+    pg_dump -Fc -U postgres mastodon_production > backupt’ąątsoh_015.2021.dump
 
 
 ## Prepare environment for streaming
 
 This guide explains how to build a streaming API manager on your `localhost`, so you can easily 
 adjust configs (or delete default configs) on a remote production or test mirror.
+
+Start Apache2: 
+
+    sudo systemctl apache2 [start / status]
 
 Install Redis
 
@@ -169,6 +141,16 @@ Install the at least the minimum required [version of nodejs]
     nodejs --version
     v14.2.0
 
+Check if system yarn exists, is old, needs updated, etc 
+
+     ls -al /usr/bin/yarn 
+                   20734 Feb 23  2018
+     rm -rf /usr/bin/yarn
+
+Install yarn via npm, and symbolically link to default 
+    npm install -g yarn
+    sudo ln -s /usr/local/bin/yarn /usr/bin/yarn
+
    
 To set-up a new database 
 
@@ -177,7 +159,7 @@ To set-up a new database
 OR To restore an old or "backup" database locally, first create a place for it to be restored in postgres:
 
      sudo -u postgres psql
-     psql (12.6 (Ubuntu 12.6-0ubuntu0.20.04.1))
+     psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
      Type "help" for help.
 
      postgres=# create database mastodon_development with owner mastodon;
@@ -186,7 +168,7 @@ OR To restore an old or "backup" database locally, first create a place for it t
 
 Then run `pg_restore` 
 
-    sudo -u postgres pg_restore -U postgres -d mastodon_development -v /backups/_21_April_2021.dump
+    sudo -u postgres pg_restore -U postgres -d mastodon_development -v /backups/backup_18May2021.dump
     bin/rails db:schema:load RAILS_ENV=development  #may be needed depending on your configs
     bin/rails db:migrate RAILS_ENV=development
 
@@ -201,7 +183,7 @@ Optional alternative commands for production system replication:
     
 -----------------    
     
- (Additional notes on UPGRADING PostGRES including some .jp-friendly help): 
+ (Additional notes on UPGRADING PostGRES including some :100: .jp-friendly help):  
  
     dpkg -l | grep postgresql
 
@@ -277,10 +259,25 @@ Optional alternative commands for production system replication:
 
 #最後に Mastodon をリスタート
 
-    systemctl restart mastodon-{web,sidekiq,streaming}.service`
+    systemctl restart mastodon-{web,sidekiq,streaming}.service
+
+
+
+## Miscellaneous admin tips for remote server mgmt:
+
+SSH remote key timeout OpenSSH>=7.2
+    ssh -o AddKeysToAgent=yes you@yourhostname "whazzup"
+    ssh you@yourhostname 
+
+[pgbouncer] is a PostgreSQL connection pooler. Any target application can be connected to 
+pgbouncer as if it were a PostgreSQL server, and pgbouncer will create a connection to the 
+actual server, or it will reuse one of its existing connections. The aim of pgbouncer is 
+to lower the performance impact of opening new connections to PostgreSQL, which can help 
+your server. pgBouncer is a transparent proxy for PostgreSQL that provides pooling based on database transactions, rather than sessions. That has the benefit that a real database connection is not needlessly occupied while a thread is doing nothing with it. Mastodon supports pgBouncer, you simply need to connect to it instead of PostgreSQL, and set the environment variable PREPARED_STATEMENTS=false
 
 
 [node install directions]: https://github.com/nodejs/node/blob/master/BUILDING.md
 [version of nodejs]: https://github.com/nodesource/distributions#installation-instructions
 [nginx is permanantly insecure]:https://www.zdnet.com/article/russian-police-raid-nginx-moscow-office/
 [RageQuit]:https://github.com/tootsuite/ragequit
+[pgbouncer]: http://www.pgbouncer.org/usage.html#quick-start
