@@ -10,7 +10,7 @@ ko:
     api: API
     apps: 모바일 앱
     apps_platforms: 마스토돈을 iOS, 안드로이드, 다른 플랫폼들에서도 사용하세요
-    browse_directory: 프로필 디렉토리를 둘러보고 관심사 찾기
+    browse_directory: 프로필 책자를 둘러보고 관심사 찾기
     browse_local_posts: 이 서버의 공개글 실시간 스트림을 둘러보기
     browse_public_posts: 마스토돈의 공개 라이브 스트림을 둘러보기
     contact: 연락처
@@ -88,6 +88,7 @@ ko:
       delete: 삭제
       destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
     accounts:
+      add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 승인
       approve_all: 모두 승인
       are_you_sure: 정말로 실행하시겠습니까?
@@ -168,6 +169,7 @@ ko:
         staff: 스태프
         user: 사용자
       search: 검색
+      search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
       shared_inbox_url: 공유된 inbox URL
       show:
@@ -189,6 +191,42 @@ ko:
       web: 웹
       whitelisted: 허용 목록
     action_logs:
+      action_types:
+        assigned_to_self_report: 신고 맡기
+        change_email_user: 사용자의 이메일 변경
+        confirm_user: 사용자 확인
+        create_account_warning: 경고 생성
+        create_announcement: 공지사항 생성
+        create_custom_emoji: 커스텀 에모지 생성
+        create_domain_allow: 도메인 허용 생성
+        create_domain_block: 도메인 차단 추가
+        create_email_domain_block: 이메일 도메인 차단 생성
+        demote_user: 사용자 강등
+        destroy_announcement: 공지사항 삭제
+        destroy_custom_emoji: 커스텀 에모지 삭제
+        destroy_domain_allow: 도메인 허용 삭제
+        destroy_domain_block: 도메인 차단 삭제
+        destroy_email_domain_block: 이메일 도메인 차단 삭제
+        destroy_status: 게시물 삭제
+        disable_2fa_user: 2단계 인증 비활성화
+        disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_user: 사용자 비활성화
+        enable_custom_emoji: 커스텀 에모지 활성화
+        enable_user: 사용자 활성화
+        memorialize_account: 계정을 장기 저장
+        promote_user: 사용자 승급
+        remove_avatar_user: 아바타 지우기
+        reopen_report: 신고 다시 열기
+        reset_password_user: 암호 재설정
+        resolve_report: 신고 처리
+        silence_account: 계정 침묵
+        suspend_account: 계정 정지
+        unassigned_report: 신고 맡기 취소
+        unsilence_account: 계정 침묵 취소
+        unsuspend_account: 계정 정지 취소
+        update_announcement: 공지사항 업데이트
+        update_custom_emoji: 커스텀 에모지 업데이트
+        update_status: 게시물 게시
       actions:
         assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
         change_email_user: "%{name}이 %{target}의 이메일 주소를 변경했습니다"
@@ -226,8 +264,12 @@ ko:
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
         update_status: "%{name}이 %{target}의 상태를 업데이트 했습니다"
       deleted_status: "(삭제됨)"
+      empty: 로그를 찾을 수 없습니다
+      filter_by_action: 행동으로 거르기
+      filter_by_user: 유저로 거르기
       title: 감사 기록
     announcements:
+      destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
         title: 공지사항 수정
       empty: 공지를 찾을 수 없습니다.
@@ -235,9 +277,12 @@ ko:
       new:
         create: 공지사항 생성
         title: 새 공지사항
-      published: 발행됨
-      time_range: 시간 범위
+      published_msg: 공지가 성공적으로 발행되었습니다!
+      scheduled_for: "%{time}에 예약됨"
+      scheduled_msg: 공지의 발행이 예약되었습니다!
       title: 공지사항
+      unpublished_msg: 공지가 성공적으로 발행 취소되었습니다!
+      updated_msg: 공지가 성공적으로 업데이트되었습니다!
     custom_emojis:
       assign_category: 분류 지정
       by_domain: 도메인
@@ -276,7 +321,7 @@ ko:
       config: 설정
       feature_deletions: 계정 삭제
       feature_invites: 초대 링크
-      feature_profile_directory: 프로필 디렉토리
+      feature_profile_directory: 프로필 책자
       feature_registrations: 가입
       feature_relay: 연합 릴레이
       feature_spam_check: 안티 스팸
@@ -351,6 +396,7 @@ ko:
       destroyed_msg: 이메일 도메인 차단 규칙을 삭제했습니다
       domain: 도메인
       empty: 현재 블랙리스트에 등록한 이메일 도메인이 없습니다
+      from_html: "%{domain}에서"
       new:
         create: 차단 규칙 생성
         title: 새 이메일 도메인 차단
@@ -475,7 +521,7 @@ ko:
         title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
       profile_directory:
         desc_html: 유저들이 발견 될 수 있도록 허용
-        title: 프로필 디렉토리 활성화
+        title: 프로필 책자 활성화
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
@@ -527,6 +573,9 @@ ko:
       trends:
         desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
         title: 유행하는 해시태그
+    site_uploads:
+      delete: 업로드한 파일 삭제
+      destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     statuses:
       back_to_account: 계정으로 돌아가기
       batch:
@@ -546,7 +595,7 @@ ko:
       accounts_week: 금주의 순 사용자
       breakdown: 소스별 오늘의 사용량 분석
       context: 문맥
-      directory: 디렉토리에 있음
+      directory: 책자에 있음
       in_directory: 디렉토리에 %{count}개 있음
       last_active: 최근 활동
       most_popular: 최고 인기
@@ -563,7 +612,6 @@ ko:
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
-      edit: 편집
       edit_preset: 경고 틀 수정
       title: 경고 틀 관리
   admin_mailer:
@@ -581,6 +629,7 @@ ko:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
     deleted_msg: 성공적으로 별칭을 삭제했습니다. 해당 계정에서 이 계정으로의 이주는 더이상 가능하지 않습니다.
+    empty: 별칭이 없습니다.
     hint_html: 다른 계정에서 이 계정으로 옮기길 원하는 경우, 여기에서 별칭을 만들 수 있습니다, 기존 계정의 팔로워를 이쪽으로 옮기고 싶은 경우 필요한 과정입니다. 이 행동 자체는 <strong>해롭지 않고 되돌리기가 가능합니다</strong>.<strong>계정 이주는 이전 계정에서 착수하게 됩니다</strong>
     remove: 별칭 연결 끊기
   appearance:
@@ -651,6 +700,7 @@ ko:
     trouble_logging_in: 로그인 하는데 문제가 있나요?
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
+    already_requested: 이미 이 계정에게 팔로우 요청을 보냈습니다
     error: 리모트 계정을 확인하는 도중 오류가 발생했습니다
     follow: 팔로우
     follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
@@ -700,7 +750,7 @@ ko:
       username_available: 당신의 계정명은 다시 사용할 수 있게 됩니다
       username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
   directories:
-    directory: 프로필 디렉토리
+    directory: 프로필 책자
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
   domain_validator:
@@ -770,7 +820,6 @@ ko:
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
-    edit: 수정
     no_batch_actions_available: 이 페이지에서 수행할 수 있는 일괄작업이 없습니다
     order_by: 순서
     save_changes: 변경 사항을 저장
@@ -794,6 +843,8 @@ ko:
     inactive: 비활성
     publicize_checkbox: '그리고 이것을 툿 하세요:'
     publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
+    remove: 계정증명을 삭제
+    removed: 성공적으로 계정증명을 삭제했습니다
     status: 인증 상태
     view_proof: 증명 보기
   imports:
@@ -838,6 +889,7 @@ ko:
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부 된 게시물엔 동영상을 첨부 할 수 없습니다
+      not_ready: 처리가 끝나지 않은 파일은 첨부할 수 없습니다. 잠시 후에 다시 시도해 주세요!
       too_many: 최대 4개까지 첨부할 수 있습니다
   migrations:
     acct: 새 계정의 username@domain
@@ -1054,6 +1106,8 @@ ko:
     content_warning: '열람 주의: %{warning}'
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+    errors:
+      in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
     language_detection: 자동으로 언어 감지
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
@@ -1069,6 +1123,7 @@ ko:
         other: "%{count}명 투표함"
       vote: 투표
     show_more: 더 보기
+    show_thread: 글타래 보기
     sign_in_to_participate: 로그인 하여 이 대화에 참여하기
     title: '%{name}: "%{quote}"'
     visibilities:

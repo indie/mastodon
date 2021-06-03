@@ -12,7 +12,7 @@
 
     %link{ rel: 'icon', href: favicon_path, type: 'image/x-icon' }/
     %link{ rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }/
-    %link{ rel: 'mask-icon', href: '/mask-icon.svg', color: '#2B90D9' }/
+    %link{ rel: 'mask-icon', href: '/mask-icon.svg', color: '#2b2b2b' }/
     %link{ rel: 'manifest', href: '/manifest.json' }/
     %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
     %meta{ name: 'theme-color', content: '#282c37' }/
@@ -26,6 +26,8 @@
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = csrf_meta_tags
 
+    = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
+
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, media: 'all'
 
@@ -34,6 +36,6 @@
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
-    %div{ style: 'display: none'}
-      = render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
-      = render file: Rails.root.join('app', 'javascript', 'images', 'logo_full.svg')
+    .logo-resources
+      = render file: Rails.root.join('app', 'javascript', 'images', 'ecosteader_turtleisland.svg')
+      = render file: Rails.root.join('app', 'javascript', 'images', 'ecosteader_turtleisland.svg')

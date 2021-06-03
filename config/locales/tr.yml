@@ -193,6 +193,12 @@ tr:
       web: Web
       whitelisted: Beyaz listede
     action_logs:
+      action_types:
+        change_email_user: Kullanıcı için e-postayı değiştir
+        confirm_user: Kullanıcıyı Onayla
+        create_announcement: Duyuru Oluştur
+        create_custom_emoji: Özel İfade Oluştur
+        destroy_status: Durumu Sil
       actions:
         assigned_to_self_report: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
@@ -232,6 +238,7 @@ tr:
       deleted_status: "(silinmiş durum)"
       title: Denetim günlüğü
     announcements:
+      destroyed_msg: Duyuru başarıyla silindi!
       edit:
         title: Duyuruyu düzenle
       empty: Duyuru bulunamadı.
@@ -239,9 +246,12 @@ tr:
       new:
         create: Duyuru oluştur
         title: Yeni duyuru
-      published: Yayınlanan
-      time_range: Zaman aralığı
+      published_msg: Duyuru başarıyla yayınlandı!
+      scheduled_for: "%{time} için zamanlandı"
+      scheduled_msg: Duyuru yayınlanmak üzere planlandı!
       title: Duyurular
+      unpublished_msg: Duyuru başarıyla yayından kaldırıldı!
+      updated_msg: Duyuru başarıyla güncellendi!
     custom_emojis:
       assign_category: Kategori ata
       by_domain: Alan adı
@@ -569,7 +579,6 @@ tr:
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
-      edit: Düzenle
       edit_preset: Uyarı ön-ayarını düzenle
       title: Uyarı ön-ayarlarını yönet
   admin_mailer:
@@ -776,7 +785,6 @@ tr:
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
     delete: Sil
-    edit: Düzenle
     no_batch_actions_available: Bu sayfada toplu işlem yok
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
@@ -1084,6 +1092,7 @@ tr:
         other: "%{count} oy"
       vote: Oy
     show_more: Daha fazla
+    show_thread: Mesaj dizisini göster
     sign_in_to_participate: Sohbete katılmak için oturum açın
     title: '%{name}: "%{quote}"'
     visibilities:

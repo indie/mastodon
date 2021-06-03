@@ -8,12 +8,19 @@ cs:
         acct: Zadejte svůj účet, na který se chcete přesunout, ve formátu přezdívka@doména
       account_warning_preset:
         text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
+        title: Nepovinné. Není viditelné pro příjemce
       admin_account_action:
         include_statuses: Uživatel uvidí, které tooty způsobily moderátorskou akci nebo varování
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
         text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
         type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
         warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
+      announcement:
+        all_day: Po vybrání budou zobrazeny jenom dny z časového období
+        ends_at: Volitelné. Zveřejněné oznámení bude v uvedený čas skryto.
+        scheduled_at: Pro okamžité zveřejnění ponechte prázdné
+        starts_at: Volitelné. Jen pokud je oznámení vázáno na konkrétní časové období
+        text: Můžete použít stejnou syntax jako pro tooty. Myslete ale na to, že oznámení zabere uživatelům na obrazovce nějaký prostor.
       defaults:
         autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -72,6 +79,7 @@ cs:
         acct: Adresa nového účtu
       account_warning_preset:
         text: Text předlohy
+        title: Nadpis
       admin_account_action:
         include_statuses: Zahrnout v e-mailu nahlášené tooty
         send_email_notification: Informovat uživatele e-mailem
@@ -85,8 +93,10 @@ cs:
         warning_preset_id: Použít předlohu pro varování
       announcement:
         all_day: Celodenní událost
+        ends_at: Konec události
         scheduled_at: Naplánovat zveřejnění
         starts_at: Začátek události
+        text: Oznámení
       defaults:
         autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
@@ -142,6 +152,8 @@ cs:
         username: Uživatelské jméno
         username_or_email: Uživatelské jméno nebo e-mail
         whole_word: Celé slovo
+      email_domain_block:
+        with_dns_records: Zahrnout MX záznamy a IP adresy domény
       featured_tag:
         name: Hashtag
       interactions:

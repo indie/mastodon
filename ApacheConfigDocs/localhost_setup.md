@@ -1,11 +1,10 @@
 
 # Mastodon Fediverse servers with Apache2 
 # Localize your stream to escape the Fascistbook
-(find friends who understand)
+## (find friends who understand)
 
-## 
 
-Set up your localhost environment to develop and backup your custom Mastodon instance. 
+## Set up your localhost environment to develop and backup your custom Mastodon instance. 
 
 ### Apache not nginx -- remove to eliminate potential conflicts; you can always add it back later.
 
@@ -22,8 +21,8 @@ Set up your localhost environment to develop and backup your custom Mastodon ins
 
 System-based install prerequisites:
 
-    sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev apache2 node-cacache libmemcached-dev libnss-cache
-
+    sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+    apache2 node-cacache libmemcached-dev libnss-cache
 
 Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; 
 upstream are pretty good about keeping master RUBIES secure.  Note Heroku's use of [nginx is permanantly insecure].
@@ -74,7 +73,6 @@ see SUCCESS:
 
     bundle update --bundler
     bundle install
-
     Success!
 
      Bundle complete! 117 Gemfile dependencies, 269 gems now installed.
@@ -138,7 +136,7 @@ exploit a customer's thriftiness.
 replacement for the Mastodon streaming api server."
 
 
-### The good news
+Finally, confirm you have a recent version. 
 
 Since we're running an Apache2 (2.4.18) frontend that has been thoroughly tested and "works", the 
 good news is that we have plenty of options that don't involve noisy Nginx. The NodeJS/Yarn config 
@@ -150,7 +148,7 @@ readily available in the `ecosteader` repo, which has already customized configu
 
 Backup your production (copy) scripts and code: 
 
-    pg_dump -Fc -U postgres mastodon_production > 21_April_2021.dump
+    pg_dump -Fc -U postgres mastodon_production > backupt’ąątsoh_015.2021.dump
 
 
 ## Prepare environment for streaming
@@ -175,6 +173,16 @@ Install the at least the minimum required [version of nodejs]
 
     nodejs --version
     v14.2.0
+
+Check if system yarn exists, is old, needs updated, etc 
+
+     ls -al /usr/bin/yarn 
+                   20734 Feb 23  2018
+     rm -rf /usr/bin/yarn
+
+Install yarn via npm, and symbolically link to default 
+    npm install -g yarn
+    sudo ln -s /usr/local/bin/yarn /usr/bin/yarn
 
    
 To set-up a new database 
@@ -208,7 +216,7 @@ Optional alternative commands for production system replication:
     
 -----------------    
     
- (Additional notes on UPGRADING PostGRES including some .jp-friendly help):  
+ (Additional notes on UPGRADING PostGRES including some :100: .jp-friendly help):  
  
     dpkg -l | grep postgresql
 
@@ -286,10 +294,19 @@ Optional alternative commands for production system replication:
 
     systemctl restart mastodon-{web,sidekiq,streaming}.service
 
+<<<<<<< HEAD
 ## Miscellaneous admin tips for remote server mgmt:
 
 SSH remote key timeout OpenSSH>=7.2
     ssh -o AddKeysToAgent=yes you@yourhostname     ssh you@yourhostname 
+=======
+
+
+## Miscellaneous admin tips for remote server mgmt:
+
+SSH remote key timeout OpenSSH>=7.2
+    ssh -o AddKeysToAgent=yes you@yourhostname "whazzup"
+    ssh you@yourhostname 
 
 [pgbouncer] is a PostgreSQL connection pooler. Any target application can be connected to 
 pgbouncer as if it were a PostgreSQL server, and pgbouncer will create a connection to the 

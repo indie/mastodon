@@ -13,11 +13,11 @@ module Mastodon
     end
 
     def patch
-      0
+      5
     end
 
     def flags
-      'rc2'
+      ''
     end
 
     def suffix
