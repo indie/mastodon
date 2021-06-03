@@ -1,20 +1,18 @@
 
 # Mastodon Fediverse servers with Apache2 
-# Localize your stream
+# Localize your stream to escape the Fascistbook
+## (find friends who understand)
 
-## 
 
-Set up your localhost environment to develop and backup your custom Mastodon instance. 
+## Set up your localhost environment to develop and backup your custom Mastodon instance. 
 
-### Apache not nginx -- remove to eliminate potential conflicts 
+### Apache not nginx -- remove to eliminate potential conflicts; you can always add it back later.
 
     sudo apt remove nginx
     sudo apt --purge remove nginx/
     sudo apt --purge remove nginx 
 
 ## Get started
-
-        
 
     git clone git@github.com:indie/mastodon.git 
     cd mastodon && git checkout ecosteader_v3.3
@@ -26,9 +24,8 @@ System-based install prerequisites:
     sudo apt install autoconf bison build-essential zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
     apache2 node-cacache libmemcached-dev libnss-cache
 
-
-Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; upstream 
-are pretty good about keeping master RUBIES secure.  Note Heroku's use of [nginx is permanantly insecure].
+Configure your Ruby on Rails development environment to let `rbenv` manage your ruby builds; 
+upstream are pretty good about keeping master RUBIES secure.  Note Heroku's use of [nginx is permanantly insecure].
 
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -49,8 +46,7 @@ Now build the plugins directory
     gem install bundler:2.1.2
 
 Note that if you are not creating a development environment, and instead are building 
-directly on the prod server, you might also want to add the `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.6.5` 
-as the jemalloc can help reduce memory usage on production systems. 
+directly on the prod server, you might also want to add the `RUBY_CONFIGURE_OPTS=--with-jemalloc rbenv install 2.6.5` as the jemalloc can help reduce memory usage on production systems. 
     
 The next dependencies we add are for SSL: 
 
@@ -71,24 +67,41 @@ it can do the most good.
 
      sudo apt install libidn11-dev
 
-Finally are we ready to run `bundle install`. Be sure you're at the root of the cloned `mastodon` directory, and on 
-your own branch. If you followed ths guide on a true Linux system, you should see SUCCESS: 
+Finally are we ready to run `bundle install`. Be sure you're at the root of the cloned `mastodon` 
+directory, and on your own branch. If you followed ths guide on a true Linux system, you should 
+see SUCCESS: 
 
     bundle update --bundler
     bundle install
-
-Success!
+    Success!
 
      Bundle complete! 117 Gemfile dependencies, 269 gems now installed.
      Use `bundle info [gemname]` to see where a bundled gem is installed.
      
+
+Remove default system yarn, if any (it's probably old; you can check the date as follows) 
+
+     ls -al /usr/bin/yarn 
+     -rwxr-xr-x 1 root root 20734 Feb 23  2018
+     rm -rf /usr/bin/yarn
+
+Install yarn via npm, and symbolically link to default 
+    
+    npm install -g yarn
+
+    sudo ln -s /usr/local/bin/yarn /usr/bin/yarn
+
+Finally, confirm you have a recent version. 
  
 To build a local development environment that actually runs Mastodon like it will be on a 
 production server, a user named `mastodon` needs to exist; let's set that up with your postgres:
 
      $ sudo -u postgres psql
-     psql (10.8 (Ubuntu 10.8-0ubuntu0.18.10.1))
+     sudo] password for indie:             
+     psql (12.7 (Ubuntu 12.7-ubuntu0.20.10.1))
      Type "help" for help.
+
+     postgres=# 
 
      postgres=# CREATE USER mastodon CREATEDB;
      CREATE ROLE
@@ -101,15 +114,35 @@ users, it should be fairly straightforward.
 
 ## Options for "streaming" APIs
 
-The next step is to get the high-level "streaming" APIs configured, and this can go many ways. If you 
-find yourself getting stuck after following some overly complex "instruction", it's usually better 
-to start removing Gems, rather than adding. It's always a good idea to watch out for code bloat 
-and third-party things that are not clear on what they are doing to your system. There are many 
-malicious actors that want to destroy what we're building; don't let them! 
+The next step is to get the high-level "streaming" APIs configured, and this can go many ways. If 
+you find yourself getting stuck after following some overly complex "instruction", it's usually 
+better to start removing Gems, rather than adding. It's always a good idea to watch out for code 
+bloat and third-party things that are not clear on what they are doing to your system. There are 
+many haters and malicious fascistbookers that want to destroy what we're building; don't let them! 
+
+### NodeJS & Yarn vs RageQuit
+
+This is where things can get tricky. 
+
+The long and short of this is: some webhosts, like AWS or Heroku, absolutely want you to push 
+traffic through bottlenecks they can slow down; this is how they make money or attempt to "justify" 
+putting your site on some sort of convoluted metered system (Linode's switch to "hourly" 
+billing that destroyed Ecosteader's original Mastodon instance, for example). Heroku actually 
+steals your data! It can be especially dangerous when those same webhosts actually target their 
+own customers with malware and bots that throttle the true content of an instance as a means to 
+exploit a customer's thriftiness.
+
+[RageQuit] is another option for Mastodon streaming; it calls itself "A WIP blazingly fast drop-in 
+replacement for the Mastodon streaming api server."
 
 
 Finally, confirm you have a recent version. 
 
+Since we're running an Apache2 (2.4.18) frontend that has been thoroughly tested and "works", the 
+good news is that we have plenty of options that don't involve noisy Nginx. The NodeJS/Yarn config 
+**will** work with a few minor adjustments to the `tootsuite/mastodon` default code as long as we 
+don't implement anything on the NGINX side. We won't dig too much into those changes, but they are 
+readily available in the `ecosteader` repo, which has already customized configuration.
 
 ## Migrating a database from nginx to Apache server
 
@@ -261,6 +294,12 @@ Optional alternative commands for production system replication:
 
     systemctl restart mastodon-{web,sidekiq,streaming}.service
 
+<<<<<<< HEAD
+## Miscellaneous admin tips for remote server mgmt:
+
+SSH remote key timeout OpenSSH>=7.2
+    ssh -o AddKeysToAgent=yes you@yourhostname     ssh you@yourhostname 
+=======
 
 
 ## Miscellaneous admin tips for remote server mgmt:
