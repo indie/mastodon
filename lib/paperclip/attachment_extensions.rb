@@ -7,11 +7,7 @@ module Paperclip
     # usage, and we still want to generate thumbnails straight
     # away, it's the only style we need to exclude
     def process_style?(style_name, style_args)
-<<<<<<< HEAD
       if style_name == :original && instance.respond_to?(:delay_processing_for_attachment?) && instance.delay_processing_for_attachment?(name)
-=======
-      if style_name == :original && instance.respond_to?(:delay_processing?) && instance.delay_processing?
->>>>>>> 0db8db0294dca2f3fd4490431f27a697be5f4d42
         false
       else
         style_args.empty? || style_args.include?(style_name)
@@ -31,11 +27,7 @@ module Paperclip
       return true  if original_filename == other_filename
       return false if original_filename.nil?
 
-<<<<<<< HEAD
       formats = styles.values.filter_map(&:format)
-=======
-      formats = styles.values.map(&:format).compact
->>>>>>> 0db8db0294dca2f3fd4490431f27a697be5f4d42
 
       return false if formats.empty?
 
@@ -43,7 +35,6 @@ module Paperclip
 
       formats.include?(other_extension.delete('.')) && File.basename(other_filename, other_extension) == File.basename(original_filename, File.extname(original_filename))
     end
-<<<<<<< HEAD
 
     def default_url(style_name = default_style)
       @url_generator.for_as_default(style_name)
@@ -65,8 +56,6 @@ module Paperclip
         end
       end.run
     end
-=======
->>>>>>> 0db8db0294dca2f3fd4490431f27a697be5f4d42
   end
 end
 
