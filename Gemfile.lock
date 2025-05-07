@@ -282,8 +282,8 @@ GEM
     http-parser (1.2.1)
       ffi-compiler (>= 1.0, < 2.0)
     http_accept_language (2.1.1)
-    httplog (1.4.2)
-      rack (>= 1.0)
+    httplog (1.6.2)
+      rack (>= 2.0)
       rainbow (>= 2.0.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
@@ -360,7 +360,9 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.0512)
-    mimemagic (0.3.5)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
@@ -483,7 +485,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rake (13.0.1)
     rdf (3.1.2)
       hamster (~> 3.0)
@@ -717,7 +719,7 @@ DEPENDENCIES
   http (~> 4.4)
   http_accept_language (~> 2.1)
   http_parser.rb (~> 0.6)!
-  httplog (~> 1.4.2)
+  httplog (~> 1.6.2)
   i18n-tasks (~> 0.9)
   idn-ruby
   iso-639
